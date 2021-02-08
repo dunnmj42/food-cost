@@ -15,10 +15,14 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserDashboard from '../UserDashboard/UserDashboard';
-import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import MealHistory from '../MealHistory/MealHistory';
+import AddMeal from '../AddMeal/AddMeal';
+import MealDetails from '../MealDetails/MealDetails';
+import MealEdit from '../MealEdit/MealEdit';
+import Trends from '../Trends/Trends';
 
 import './App.css';
 
@@ -59,11 +63,43 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows MealHistory else shows LoginPage
             exact
-            path="/info"
+            path="/mealhistory"
           >
-            <InfoPage />
+            <MealHistory />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows AddMeal else shows LoginPage
+            exact
+            path="/addmeal"
+          >
+            <AddMeal />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows AddMeal else shows LoginPage
+            exact
+            path="/mealdetails"
+          >
+            <MealDetails />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows AddMeal else shows LoginPage
+            exact
+            path="/mealedit"
+          >
+            <MealEdit />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows AddMeal else shows LoginPage
+            exact
+            path="/trends"
+          >
+            <Trends />
           </ProtectedRoute>
 
           {/* When a value is supplied for the authRedirect prop the user will
