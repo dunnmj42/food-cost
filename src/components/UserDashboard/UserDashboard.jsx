@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cpm: {
     margin: 40,
+    padding: 5,
   },
   mealcard: {
     maxWidth: 345,
