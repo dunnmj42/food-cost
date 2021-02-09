@@ -11,7 +11,8 @@ const {
 router.get('/', (req, res) => {
   if (req.isAuthenticated()) {
     const query = `
-      SELECT * FROM "meals" WHERE "meals".user_id = ${req.user.id};
+      SELECT * FROM "meals" WHERE "meals".user_id = ${req.user.id} 
+      ORDER BY "meals".id DESC;
       `;
     pool
       .query(query)
