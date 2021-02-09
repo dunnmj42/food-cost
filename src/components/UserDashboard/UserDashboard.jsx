@@ -64,7 +64,6 @@ function UserDashboard() {
           Add Meal
         </Fab>
         <Paper className={classes.cpm}>Average Cost Per Meal: $9.99</Paper>
-
         <Card className={classes.mealcard} key={recentMeal?.id}>
           <CardHeader
             title={recentMeal?.name}
