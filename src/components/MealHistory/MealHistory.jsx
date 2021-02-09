@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import Grid from '@material-ui/core/Grid';
+import Grid from "@material-ui/core/Grid";
 
 import MealCard from "../MealCard/MealCard";
 
@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MealHistory() {
-
   const meals = useSelector((store) => store?.meals);
 
   const classes = useStyles();
@@ -35,7 +34,7 @@ function MealHistory() {
             <Grid item m={6} key={i}>
               <MealCard meal={meal} />
             </Grid>
-          )
+          );
         })}
       </Grid>
     </div>
