@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { useHistory, Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 
 // floating action button
@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
     margin: 40,
     padding: 5,
   },
+  historyLink: {
+    textDecoration: "none",
+  },
 }));
 
 function UserDashboard() {
@@ -37,6 +40,7 @@ function UserDashboard() {
 
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch({
@@ -47,12 +51,14 @@ function UserDashboard() {
   return (
     <div className="container">
       <div className={classes.root}>
-        <Fab variant="extended" color="primary">
+        <Fab variant="extended" color="primary" onClick={() => history.push("/addmeal")}>
           <AddIcon className={classes.extendedIcon} />
           Add Meal
         </Fab>
-        <Paper className={classes.cpm}>Average Cost Per Meal: $9.99</Paper>
-        <MealCard meal={meal}/>
+        <Paper className={classes.cpm} onClick={() => history.push("/trends")}>Average Cost Per Meal: $9.99</Paper>
+        <Link to={"/mealhistory"} className={classes.historyLink}>
+          <MealCard meal={meal} />
+        </Link>
       </div>
     </div>
   );
