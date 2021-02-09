@@ -14,7 +14,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 
 // drawer imports
-import Drawer from "@material-ui/core/Drawer";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
@@ -162,13 +162,15 @@ function Nav() {
           </Typography>
         </Toolbar>
       </AppBar>
-      {user.id && (<Drawer
+      {user.id && (<SwipeableDrawer
         className={classes.drawer}
         anchor="left"
         open={open}
         classes={{
           paper: classes.drawerPaper,
         }}
+        onOpen={handleDrawerOpen}
+        onClose={handleDrawerClose}
         onClick={handleDrawerClose}
       >
         <div className={classes.drawerHeader}>
@@ -181,7 +183,7 @@ function Nav() {
           {linkList.map((item, i) => {
             const { text, icon, onClick } = item;
             return (
-              <ListItem button key={text} onClick={onClick}>
+              <ListItem button key={i} onClick={onClick}>
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
@@ -196,7 +198,7 @@ function Nav() {
             </ListItem>
           </List>
         </div>
-      </Drawer>
+      </SwipeableDrawer>
       )}
       <div>
       <Dialog
