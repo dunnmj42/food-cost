@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
 import { useLocation, useHistory } from "react-router-dom";
 
@@ -28,14 +28,13 @@ import TimelineIcon from "@material-ui/icons/Timeline";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 // dialog imports
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Slide from '@material-ui/core/Slide';
-
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Slide from "@material-ui/core/Slide";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,13 +69,13 @@ function Nav() {
   const [logout, setLogout] = useState(false);
 
   const handleDrawerOpen = () => {
-    if(user.id != null) {
+    if (user.id != null) {
       setOpen(true);
     }
   };
 
   const handleDrawerClose = () => {
-    if(user.id != null) {
+    if (user.id != null) {
       setOpen(false);
     }
   };
@@ -87,12 +86,12 @@ function Nav() {
 
   const handleLogout = () => {
     setLogout(false);
-    dispatch({ type: 'LOGOUT' })
+    dispatch({ type: "LOGOUT" });
   };
 
   const handleLogoutCancel = () => {
     setLogout(false);
-  }
+  };
 
   const linkList = [
     {
@@ -118,7 +117,7 @@ function Nav() {
   ];
 
   const changeTitle = () => {
-    if(user.id != null) {
+    if (user.id != null) {
       switch (location.pathname) {
         case "/user":
           return "Dashboard";
@@ -138,7 +137,7 @@ function Nav() {
           return "FoodCost";
       }
     } else {
-      return "FoodCost"
+      return "FoodCost";
     }
   };
 
@@ -162,67 +161,70 @@ function Nav() {
           </Typography>
         </Toolbar>
       </AppBar>
-      {user.id && (<SwipeableDrawer
-        className={classes.drawer}
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-        onOpen={handleDrawerOpen}
-        onClose={handleDrawerClose}
-        onClick={handleDrawerClose}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          {linkList.map((item, i) => {
-            const { text, icon, onClick } = item;
-            return (
-              <ListItem button key={i} onClick={onClick}>
-                <ListItemIcon>{icon}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            );
-          })}
-        </List>
-        <div className={classes.fixedFooter}>
+      {user.id && (
+        <SwipeableDrawer
+          className={classes.drawer}
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+          onOpen={handleDrawerOpen}
+          onClose={handleDrawerClose}
+          onClick={handleDrawerClose}
+        >
+          <div className={classes.drawerHeader}>
+            <IconButton onClick={handleDrawerClose}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </div>
+          <Divider />
           <List>
-            <ListItem button key="logout" onClick={handleLogoutOpen}>
-              <ListItemIcon><ExitToAppIcon /></ListItemIcon>
-              <ListItemText primary="Log Out" />
-            </ListItem>
+            {linkList.map((item, i) => {
+              const { text, icon, onClick } = item;
+              return (
+                <ListItem button key={i} onClick={onClick}>
+                  <ListItemIcon>{icon}</ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+              );
+            })}
           </List>
-        </div>
-      </SwipeableDrawer>
+          <div className={classes.fixedFooter}>
+            <List>
+              <ListItem button key="logout" onClick={handleLogoutOpen}>
+                <ListItemIcon>
+                  <ExitToAppIcon />
+                </ListItemIcon>
+                <ListItemText primary="Log Out" />
+              </ListItem>
+            </List>
+          </div>
+        </SwipeableDrawer>
       )}
       <div>
-      <Dialog
-        open={logout}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleLogoutCancel}
-      >
-        <DialogTitle id="alert-dialog-slide-title">{"Logout?"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            Are you sure you'd like to log out?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleLogoutCancel} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleLogout} color="primary">
-            Log Out
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+        <Dialog
+          open={logout}
+          TransitionComponent={Transition}
+          keepMounted
+          onClose={handleLogoutCancel}
+        >
+          <DialogTitle id="alert-dialog-slide-title">{"Logout?"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-slide-description">
+              Are you sure you'd like to log out?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleLogoutCancel} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={handleLogout} color="primary">
+              Log Out
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
     </div>
   );
 }
