@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   mealcard: {
     maxWidth: 345,
+    justifyContent: "left",
   },
 }));
 
@@ -73,7 +74,7 @@ function UserDashboard() {
             <CardMedia
               component="img"
               alt={recentMeal?.name}
-              height="140"
+              height="180"
               image={recentMeal?.image}
               title={recentMeal?.name}
             />
