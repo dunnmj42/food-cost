@@ -19,6 +19,7 @@ CREATE TABLE "meals" (
 	"image" varchar(255),
 	"date" DATE,
 	"user_id" int,
+	"portions" int,
 	CONSTRAINT "meals_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
