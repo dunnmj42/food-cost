@@ -47,7 +47,7 @@ function AddMeal() {
 
   const ingredientChange = (e) => {
     const newIngredients = [...ingredients];
-    newIngredients[e.target.dataset.i][e.target.className] = e.target.value;
+    newIngredients[e.target.dataset.i][e.target.dataset.property] = e.target.value;
     setIngredients(newIngredients);
   };
 
@@ -64,7 +64,7 @@ function AddMeal() {
   };
 
   return (
-    <div className="container">
+    <div>
       <form className={classes.root} autoComplete="off" onSubmit={handleSubmit}>
         {ingredients.map((ing, i) => {
           const nameId = `name-${i}`;
@@ -76,28 +76,37 @@ function AddMeal() {
                 id={nameId}
                 label="Ingredient"
                 name={nameId}
-                data-i={i}
-                className="name"
+                inputProps={{
+                  "data-i" : `${i}`,
+                  "data-property" : "name"
+                }}
                 value={ingredients[i].name}
                 onChange={ingredientChange}
+                variant="outlined"
               />
               <TextField
                 id={priceId}
                 label="Price"
                 name={priceId}
-                data-i={i}
-                className="price"
+                inputProps={{
+                  "data-i" : `${i}`,
+                  "data-property" : "price"
+                }}
                 value={ingredients[i].price}
                 onChange={ingredientChange}
+                variant="outlined"
               />
               <TextField
                 id={qtyId}
                 label="Quantity Used"
                 name={qtyId}
-                data-i={i}
-                className="quantity"
+                inputProps={{
+                  "data-i" : `${i}`,
+                  "data-property" : "quantity"
+                }}
                 value={ingredients[i].quantity}
                 onChange={ingredientChange}
+                variant="outlined"
               />
               <IconButton
                 color="secondary"
@@ -121,13 +130,17 @@ function AddMeal() {
             label="Meal Name"
             value={meal.name}
             onChange={mealChange}
+            variant="outlined"
           />
           <TextField
             id="description"
             name="description"
+            multiline
+            rowsMax={4}
             label="Meal Description"
             value={meal.description}
             onChange={mealChange}
+            variant="outlined"
           />
           <TextField
             id="image"
@@ -135,6 +148,7 @@ function AddMeal() {
             label="Meal Image URL"
             value={meal.image}
             onChange={mealChange}
+            variant="outlined"
           />
           <TextField
             id="portions"
@@ -142,6 +156,7 @@ function AddMeal() {
             label="Number of Portions"
             value={meal.portions}
             onChange={mealChange}
+            variant="outlined"
           />
           <TextField
             id="date"
@@ -149,6 +164,7 @@ function AddMeal() {
             label="Date Made"
             value={meal.date}
             onChange={mealChange}
+            variant="outlined"
           />
         </div>
         <Button variant="contained" color="primary" type="submit">
