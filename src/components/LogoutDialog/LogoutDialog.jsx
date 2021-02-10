@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -16,10 +17,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 function LogoutDialog({logout, setLogout}) {
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleLogout = () => {
     setLogout(false);
     dispatch({ type: "LOGOUT" });
+    history.push("/login")
   };
 
   const handleLogoutCancel = () => {
