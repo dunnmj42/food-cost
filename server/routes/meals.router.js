@@ -8,7 +8,7 @@ const {
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
   if (req.isAuthenticated()) {
     const query = `
       SELECT * FROM "meals" WHERE "meals".user_id = ${req.user.id} 
