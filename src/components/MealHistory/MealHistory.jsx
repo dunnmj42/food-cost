@@ -33,10 +33,10 @@ function MealHistory() {
 
   return (
     <div className={classes.gridDiv}>
-      <Grid container spacing={3} className={classes.root}>
+      <Grid container spacing={3} justify="center" alignItems="center" className={classes.root}>
         {meals?.map((meal, i) => {
           return (
-            <Grid item md={6} key={i}>
+            <Grid item key={i}>
               <MealCard meal={meal} />
             </Grid>
           );
