@@ -27,7 +27,7 @@ CREATE TABLE "meals" (
 CREATE TABLE "ingredients" (
 	"id" serial NOT NULL,
 	"name" varchar(255) NOT NULL,
-	"price" int NOT NULL,
+	"price" real NOT NULL,
 	CONSTRAINT "ingredients_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -37,7 +37,7 @@ CREATE TABLE "meals_ingredients" (
 	"id" serial NOT NULL,
 	"ingredient_id" int NOT NULL,
 	"meal_id" int NOT NULL,
-	"ingredient_qty" int NOT NULL,
+	"ingredient_qty" real NOT NULL,
 	CONSTRAINT "meals_ingredients_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
