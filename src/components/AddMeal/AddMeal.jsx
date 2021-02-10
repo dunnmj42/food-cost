@@ -7,6 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,24 +40,27 @@ function AddMeal() {
   };
 
   const removeIngredient = (i) => {
-    const updatedIngredients = [...ingredients];
-    updatedIngredients.splice(i, 1);
-    setIngredients(updatedIngredients);
+    const newIngredients = [...ingredients];
+    newIngredients.splice(i, 1);
+    setIngredients(newIngredients);
   };
 
   const ingredientChange = (e) => {
-    const updatedIngredients = [...ingredients];
-    updatedIngredients[e.target.dataset.i][e.target.className] = e.target.value;
-    setIngredients(updatedIngredients);
+    const newIngredients = [...ingredients];
+    newIngredients[e.target.dataset.i][e.target.className] = e.target.value;
+    setIngredients(newIngredients);
   };
 
   const mealChange = (e) => {
-    
-  }
+    const newMeal = { ...meal };
+    newMeal[e.target.name] = e.target.value;
+    setMeal(newMeal);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(ingredients);
+    console.log(meal);
   };
 
   return (
@@ -106,14 +110,50 @@ function AddMeal() {
             </div>
           );
         })}
-        <Fab
-          variant="extended"
-          color="primary"
-          onClick={addIngredient}
-        >
+        <Fab variant="extended" color="primary" onClick={addIngredient}>
           <AddIcon className={classes.extendedIcon} />
           Add Ingredient
         </Fab>
+        <div>
+          <TextField
+            id="name"
+            name="name"
+            label="Meal Name"
+            value={meal.name}
+            onChange={mealChange}
+          />
+          <TextField
+            id="description"
+            name="description"
+            label="Meal Description"
+            value={meal.description}
+            onChange={mealChange}
+          />
+          <TextField
+            id="image"
+            name="image"
+            label="Meal Image URL"
+            value={meal.image}
+            onChange={mealChange}
+          />
+          <TextField
+            id="portions"
+            name="portions"
+            label="Number of Portions"
+            value={meal.portions}
+            onChange={mealChange}
+          />
+          <TextField
+            id="date"
+            name="date"
+            label="Date Made"
+            value={meal.date}
+            onChange={mealChange}
+          />
+        </div>
+        <Button variant="contained" color="primary" type="submit">
+          Submit
+        </Button>
       </form>
     </div>
   );
