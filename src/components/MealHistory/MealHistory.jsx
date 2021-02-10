@@ -12,7 +12,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   gridDiv: {
-    padding: 30,
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    padding: 20,
   }
 }));
 
@@ -30,7 +33,7 @@ function MealHistory() {
 
   return (
     <div className={classes.gridDiv}>
-      <Grid container spacing={3} className={classes.root} justify="center" alignItems="center">
+      <Grid container spacing={3} className={classes.root}>
         {meals?.map((meal, i) => {
           return (
             <Grid item md={6} key={i}>
