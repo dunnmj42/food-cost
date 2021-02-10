@@ -51,11 +51,17 @@ function UserDashboard() {
   return (
     <div className="container">
       <div className={classes.root}>
-        <Fab variant="extended" color="primary" onClick={() => history.push("/addmeal")}>
+        <Fab
+          variant="extended"
+          color="primary"
+          onClick={() => history.push("/addmeal")}
+        >
           <AddIcon className={classes.extendedIcon} />
           Add Meal
         </Fab>
-        <Paper className={classes.cpm} onClick={() => history.push("/trends")}>Average Cost Per Meal: $9.99</Paper>
+        <Paper className={classes.cpm} onClick={() => history.push("/trends")}>
+          Average Cost Per Meal: $9.99
+        </Paper>
         <Link to={"/mealhistory"} className={classes.historyLink}>
           <MealCard meal={meal} />
         </Link>
