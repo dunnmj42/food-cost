@@ -68,7 +68,7 @@ function Nav() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar>
         <Toolbar>
           <IconButton
             onClick={handleDrawerOpen}
@@ -84,6 +84,7 @@ function Nav() {
           </Typography>
         </Toolbar>
       </AppBar>
+      <Toolbar />
       <NavDrawer open={open} setOpen={setOpen}/>
     </div>
   );
