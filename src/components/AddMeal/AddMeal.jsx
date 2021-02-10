@@ -60,7 +60,7 @@ function AddMeal() {
   };
 
   return (
-    <div>
+    <div className="container">
       <form className={classes.root} autoComplete="off" onSubmit={handleSubmit}>
         {ingredients.map((ing, i) => {
           const nameId = `name-${i}`;
