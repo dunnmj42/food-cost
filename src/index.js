@@ -10,6 +10,8 @@ import rootSaga from './redux/sagas/_root.saga'; // imports ./redux/sagas/index.
 
 import App from './components/App/App';
 
+import { CssBaseline } from '@material-ui/core';
+
 const sagaMiddleware = createSagaMiddleware();
 
 // this line creates an array of all of redux middleware you want to use
@@ -33,6 +35,7 @@ sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>
+    <CssBaseline />
     <App />
   </Provider>,
   document.getElementById('react-root'),
