@@ -10,8 +10,10 @@ import MealCard from "../MealCard/MealCard";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    margin: "auto",
   },
+  gridDiv: {
+    padding: 30,
+  }
 }));
 
 function MealHistory() {
@@ -27,11 +29,11 @@ function MealHistory() {
   }, []);
 
   return (
-    <div>
-      <Grid container spacing={3} className={classes.root}>
+    <div className={classes.gridDiv}>
+      <Grid container spacing={3} className={classes.root} justify="center" alignItems="center">
         {meals?.map((meal, i) => {
           return (
-            <Grid item m={6} key={i}>
+            <Grid item md={6} key={i}>
               <MealCard meal={meal} />
             </Grid>
           );
