@@ -13,7 +13,8 @@ function* fetchMeals() {
 
 function* newMeal(action) {
   try {
-    yield axios.post("/api/meals", action.payload);
+    const mealToAdd = action.payload;
+    yield axios.post("/api/meals", mealToAdd);
     yield put({ type: "FETCH_MEALS" });
   } catch (error) {
     console.error(error);

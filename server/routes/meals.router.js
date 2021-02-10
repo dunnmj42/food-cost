@@ -31,8 +31,22 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
-  // POST route code here
+router.post('/', rejectUnauthenticated, (req, res) => {
+  if (req.isAuthenticated()) {
+    console.log(req.body);
+    const query = ``;
+    pool
+      .query(query, )
+      .then((result) => {
+        res.sendStatus(201);
+      })
+      .catch((error) => {
+        console.error(error);
+        res.sendStatus(500);
+      });
+    } else {
+      res.sendStatus(403);
+    }
 });
 
 module.exports = router;
