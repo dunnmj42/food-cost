@@ -11,8 +11,18 @@ function* fetchMeals() {
   }
 }
 
+function* newMeal(action) {
+  try {
+    yield axios.post("/api/meals", action.payload);
+    yield put({ type: "FETCH_MEALS" });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 function* mealsSaga() {
   yield takeEvery("FETCH_MEALS", fetchMeals);
+  yield takeEvery("NEW_MEAL", newMeal);
 }
 
 export default mealsSaga;
