@@ -13,8 +13,8 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   mealcard: {
-    maxWidth: 345,
     justifyContent: "left",
+    maxWidth: 450
   },
 }));
 
