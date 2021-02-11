@@ -5,9 +5,7 @@ const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware.js");
 
-/**
- * GET route template
- */
+
 router.get("/", rejectUnauthenticated, (req, res) => {
   if (req.isAuthenticated()) {
     const query = `
@@ -28,9 +26,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   }
 });
 
-/**
- * POST route template
- */
+
 router.post("/", rejectUnauthenticated, async (req, res) => {
   if (req.isAuthenticated()) {
     try {

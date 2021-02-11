@@ -50,7 +50,7 @@ function Nav() {
           return "Meal History";
         case "/addmeal":
           return "Add Meal";
-        case "/mealdetails":
+        case "/details":
           return "Meal Details";
         case "/mealedit":
           return "Edit Meal";
