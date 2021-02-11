@@ -27,10 +27,10 @@ function MealCard({ meal }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // click handler for "details" button
+ 
   const handleClick = () => {
-    dispatch({ type: "FETCH_DETAILS", payload: meal?.id }); // dispatch for single movie details
-    history.push("/details"); // push to details view
+    dispatch({ type: "FETCH_DETAILS", payload: meal?.id });
+    history.push("/details"); 
   };
 
   return (
