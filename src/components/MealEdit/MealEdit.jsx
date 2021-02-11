@@ -4,12 +4,12 @@ import {useSelector} from 'react-redux';
 
 function MealEdit(props) {
 
-  const store = useSelector((store) => store);
-  const [heading, setHeading] = useState('Meal Edit');
+  const details = useSelector((store) => store?.details);
+  
 
   return (
     <div>
-      <h2>{heading}</h2>
+      <h2>Edit</h2>
     </div>
   );
 }
