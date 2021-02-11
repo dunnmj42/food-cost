@@ -16,6 +16,9 @@ import Paper from "@material-ui/core/Paper";
 
 import TextField from "@material-ui/core/TextField";
 
+import CardActions from "@material-ui/core/CardActions";
+import Button from "@material-ui/core/Button";
+
 const useStyles = makeStyles((theme) => ({
   mealcard: {
     justifyContent: "left",
@@ -27,8 +30,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MealDetails(props) {
+function MealDetails() {
   const classes = useStyles();
+  const history = useHistory();
 
   const details = useSelector((store) => store?.details);
 
@@ -37,6 +41,11 @@ function MealDetails(props) {
 
   console.log(meal);
   console.log(ingredients);
+
+  const handleClick = () => {
+    dispatch({ type: "FETCH_DETAILS", payload: meal?.id }); 
+    history.push("/edit"); 
+  };
 
   return (
     <div className="container">
@@ -59,6 +68,11 @@ function MealDetails(props) {
             </Typography>
           </CardContent>
         </CardActionArea>
+        <CardActions>
+          <Button size="small" color="primary" onClick={handleClick}>
+            Edit
+          </Button>
+        </CardActions>
       </Card>
       <Paper className={classes.cpm} onClick={() => history.push("/trends")}>
         Cost Per Meal: $9.99
