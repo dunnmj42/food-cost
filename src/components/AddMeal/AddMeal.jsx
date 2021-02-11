@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -25,6 +26,7 @@ function AddMeal() {
 
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const blankIngredient = { name: "", price: "", quantity: "" };
   const blankMeal = {
@@ -61,9 +63,15 @@ function AddMeal() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     let newMeal = {meal, ingredients}
     console.log(newMeal);
     dispatch({ type: "NEW_MEAL", payload:newMeal});
+
+    setMeal({...blankMeal});
+    setIngredients([{...blankIngredient}]);
+    
+    history.push("/mealhistory");
   };
 
   return (
