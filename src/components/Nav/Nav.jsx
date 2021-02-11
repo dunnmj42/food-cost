@@ -52,7 +52,7 @@ function Nav() {
           return "Add Meal";
         case "/details":
           return "Meal Details";
-        case "/mealedit":
+        case "/edit":
           return "Edit Meal";
         case "/trends":
           return "Personal Trends";
