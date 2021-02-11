@@ -52,21 +52,22 @@ router.post("/", rejectUnauthenticated, async (req, res) => {
       const newMealId = mealsResult?.rows[0].id;
 
       const ingredientsQuery = `
-          INSERT INTO "ingredients" ("name", "price")
-          VALUES ($1, $2)
-          RETURNING "id";
+          INSERT INTO "ingredients" ("name", "price", "ingredient_qty", "meal_id")
+          VALUES ($1, $2, $3, $4)
         `;
 
-      const ingredientsArray = []
-
-      req.body.ingredients.forEach(async (ingredient) => {
-        ingredientsArray.push( ...(await pool.query(ingredientsQuery, [
+      await req.body.ingredients.forEach(async (ingredient) => {
+        const ingredientsResult = await pool.query(ingredientsQuery, [
           ingredient.name,
           ingredient.price,
-        ])).rows);
-        console.log(ingredientsArray.map(({id}) => id));
+          ingredient.quantity,
+          newMealId
+        ]);
+        console.log(ingredientsResult)
       });
       
+      res.sendStatus(201)
+
     } catch (error) {
       console.error(error);
       res.sendStatus(500);
