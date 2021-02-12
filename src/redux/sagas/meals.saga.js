@@ -21,9 +21,31 @@ function* newMeal(action) {
   }
 }
 
+function* editMeal(action) {
+  try {
+    const editBatch = action.payload;
+    yield axios.put("/api/meals", editBatch);
+    yield put({ type: "FETCH_MEALS" });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function* removeMeal(action) {
+  try {
+    const removalTarget = yield axios.delete(`/api/meals/${action.payload}`);
+    console.log("Removal target:", removalTarget.data);
+    yield put({ type: "FETCH_MEALS" });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 function* mealsSaga() {
   yield takeEvery("FETCH_MEALS", fetchMeals);
   yield takeEvery("NEW_MEAL", newMeal);
+  yield takeEvery("EDIT_MEAL", editMeal);
+  yield takeEvery("REMOVE_MEAL", removeMeal);
 }
 
 export default mealsSaga;

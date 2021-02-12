@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { useHistory } from "react-router-dom";
 
@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 function MealDetails() {
   const classes = useStyles();
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const details = useSelector((store) => store?.details);
 

@@ -28,7 +28,7 @@ function AddMeal() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const blankIngredient = { name: "", price: "", quantity: "" };
+  const blankIngredient = { name: "", price: "", ingredient_qty: "" };
   const blankMeal = {
     name: "",
     description: "",
@@ -113,9 +113,9 @@ function AddMeal() {
                 name={qtyId}
                 inputProps={{
                   "data-i" : `${i}`,
-                  "data-property" : "quantity"
+                  "data-property" : "ingredient_qty"
                 }}
-                value={ingredients[i].quantity}
+                value={ingredients[i].ingredient_qty}
                 onChange={ingredientChange}
                 variant="outlined"
               />
