@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { useHistory } from "react-router-dom";
@@ -40,6 +40,8 @@ function MealDetails() {
   const meal = details[0];
   const ingredients = details[1];
 
+  const [costPerMeal, setCostPerMeal] = useState(0);
+
   console.log(meal);
   console.log(ingredients);
 
@@ -76,7 +78,7 @@ function MealDetails() {
         </CardActions>
       </Card>
       <Paper className={classes.cpm} onClick={() => history.push("/trends")}>
-        Cost Per Meal: $9.99
+        Cost Per Meal: ${costPerMeal}
       </Paper>
       <Paper>
         {ingredients?.map((ingredient, i) => {
