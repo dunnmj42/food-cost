@@ -56,7 +56,7 @@ router.post("/", rejectUnauthenticated, async (req, res) => {
         const ingredientsResult = await pool.query(ingredientsQuery, [
           ingredient.name,
           ingredient.price,
-          ingredient.quantity,
+          ingredient.ingredient_qty,
           newMealId
         ]);
         console.log(ingredientsResult)
@@ -102,7 +102,7 @@ router.put("/", rejectUnauthenticated, async (req, res) => {
         const ingredientsResult = await pool.query(ingredientsQuery, [
           ingredient.name,
           ingredient.price,
-          ingredient.quantity,
+          ingredient.ingredient_qty,
           ingredient.id,
         ]);
       });
