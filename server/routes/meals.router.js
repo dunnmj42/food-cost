@@ -143,4 +143,25 @@ router.put("/", rejectUnauthenticated, async (req, res) => {
   }
 });
 
+router.delete("/:id", rejectUnauthenticated, (req, res) => {
+  if (req.isAuthenticated()) {
+    const idToRemove = req.params.id;
+    const removeQuery = `
+      DELETE FROM "meals" 
+      WHERE id = $1;
+    `;
+    pool
+      .query(removeQuery, [idToRemove])
+      .then((result) => {
+        res.sendStatus(200);
+      })
+      .catch((error) => {
+        console.error(error);
+        res.sendStatus(500);
+      });
+  } else {
+    res.sendStatus(403);
+  }
+});
+
 module.exports = router;
