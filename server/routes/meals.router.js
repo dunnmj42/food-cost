@@ -81,7 +81,7 @@ router.put("/", rejectUnauthenticated, async (req, res) => {
         UPDATE "meals" SET ("name", "description", "image", "date", "portions")
         = ($1, $2, $3, $4, $5)
         WHERE id = $6;
-        `;
+      `;
 
       const mealsResult = await pool.query(mealQuery, [
         req.body.meal.name,
@@ -93,10 +93,10 @@ router.put("/", rejectUnauthenticated, async (req, res) => {
       ]);
 
       const ingredientsQuery = `
-          UPDATE "ingredients" SET ("name", "price", "ingredient_qty")
-          = ($1, $2, $3)
-          WHERE id = $4;
-        `;
+        UPDATE "ingredients" SET ("name", "price", "ingredient_qty")
+        = ($1, $2, $3)
+        WHERE id = $4;
+      `;
 
       await req.body.ingredients.forEach(async (ingredient) => {
         const ingredientsResult = await pool.query(ingredientsQuery, [
@@ -104,6 +104,31 @@ router.put("/", rejectUnauthenticated, async (req, res) => {
           ingredient.price,
           ingredient.ingredient_qty,
           ingredient.id,
+        ]);
+      });
+
+      const newIngredientsQuery = `
+        INSERT INTO "ingredients" ("name", "price", "ingredient_qty", "meal_id")
+        VALUES ($1, $2, $3, $4)
+      `;
+
+      await req.body.newIngredients.forEach(async (ingredient) => {
+        const newIngredientsResult = await pool.query(newIngredientsQuery, [
+          ingredient.name,
+          ingredient.price,
+          ingredient.ingredient_qty,
+          req.body.meal.id,
+        ]);
+      });
+
+      const removeIngredientsQuery = `
+        DELETE FROM "ingredients"
+        WHERE id = $1;
+      `;
+
+      await req.body.ingredientsToRemove.forEach(async (ingredient) => {
+        const removeIngredientsResult = await pool.query(removeIngredientsQuery, [
+          ingredient.id
         ]);
       });
       

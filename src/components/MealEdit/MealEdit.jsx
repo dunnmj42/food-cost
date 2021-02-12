@@ -79,6 +79,8 @@ function MealEdit() {
 
     let editedMeal = {meal, ingredients, newIngredients, ingredientsToRemove}
     console.log(editedMeal);
+    
+    dispatch({ type: "EDIT_MEAL", payload: editedMeal });
 
   };
 

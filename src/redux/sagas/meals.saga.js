@@ -21,9 +21,20 @@ function* newMeal(action) {
   }
 }
 
+function* editMeal(action) {
+  try {
+    const editBatch = action.payload;
+    yield axios.put("/api/meals", editBatch);
+    yield put({ type: "FETCH_MEALS" });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 function* mealsSaga() {
   yield takeEvery("FETCH_MEALS", fetchMeals);
   yield takeEvery("NEW_MEAL", newMeal);
+  yield takeEvery("EDIT_MEAL", editMeal);
 }
 
 export default mealsSaga;
