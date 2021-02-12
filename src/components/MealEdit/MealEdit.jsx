@@ -30,23 +30,42 @@ function MealEdit() {
 
   const details = useSelector((store) => store?.details);
 
+  const blankIngredient = { name: "", price: "", ingredient_qty: "" };
+
+  const [newIngredients, setNewIngredients] = useState([]);
+  const [ingredientsToRemove, setIngredientsToRemove] = useState([]);
+
   const [ingredients, setIngredients] = useState(details[1]);
   const [meal, setMeal] = useState(details[0]);
 
-  const addIngredient = () => {
-    setIngredients([...ingredients, { ...blankIngredient }]);
+  const addNewIngredient = () => {
+    setNewIngredients([...newIngredients, { ...blankIngredient }]);
   };
 
   const removeIngredient = (i) => {
-    const newIngredients = [...ingredients];
-    newIngredients.splice(i, 1);
-    setIngredients(newIngredients);
+    const updatedIngredients = [...ingredients];
+    const removalTarget = ingredients[i];
+    setIngredientsToRemove([...ingredientsToRemove, removalTarget])
+    updatedIngredients.splice(i, 1);
+    setIngredients(updatedIngredients);
   };
 
   const ingredientChange = (e) => {
-    const newIngredients = [...ingredients];
-    newIngredients[e.target.dataset.i][e.target.dataset.property] = e.target.value;
-    setIngredients(newIngredients);
+    const updatedIngredients = [...ingredients];
+    updatedIngredients[e.target.dataset.i][e.target.dataset.property] = e.target.value;
+    setIngredients(updatedIngredients);
+  };
+
+  const removeNewIngredient = (i) => {
+    const updatedNewIngredients = [...newIngredients];
+    updatedNewIngredients.splice(i, 1);
+    setNewIngredients(updatedNewIngredients);
+  };
+
+  const newIngredientChange = (e) => {
+    const updatedNewIngredients = [...newIngredients];
+    updatedNewIngredients[e.target.dataset.i][e.target.dataset.property] = e.target.value;
+    setNewIngredients(updatedNewIngredients);
   };
 
   const mealChange = (e) => {
@@ -58,7 +77,7 @@ function MealEdit() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let editedMeal = {meal, ingredients}
+    let editedMeal = {meal, ingredients, newIngredients, ingredientsToRemove}
     console.log(editedMeal);
 
   };
@@ -102,7 +121,7 @@ function MealEdit() {
                 name={qtyId}
                 inputProps={{
                   "data-i" : `${i}`,
-                  "data-property" : "quantity"
+                  "data-property" : "ingredient_qty"
                 }}
                 value={ingredients[i].ingredient_qty}
                 onChange={ingredientChange}
@@ -119,7 +138,60 @@ function MealEdit() {
             </div>
           );
         })}
-        <Fab variant="extended" color="primary" onClick={addIngredient}>
+        {newIngredients?.map((ing, i) => {
+          const nameId = `name-${i}`;
+          const priceId = `price-${i}`;
+          const qtyId = `qty-${i}`;
+          return (
+            <div key={i}>
+              <TextField
+                id={nameId}
+                label="Ingredient"
+                name={nameId}
+                inputProps={{
+                  "data-i" : `${i}`,
+                  "data-property" : "name"
+                }}
+                value={newIngredients[i].name}
+                onChange={newIngredientChange}
+                variant="outlined"
+              />
+              <TextField
+                id={priceId}
+                label="Price"
+                name={priceId}
+                inputProps={{
+                  "data-i" : `${i}`,
+                  "data-property" : "price"
+                }}
+                value={newIngredients[i].price}
+                onChange={newIngredientChange}
+                variant="outlined"
+              />
+              <TextField
+                id={qtyId}
+                label="Quantity Used"
+                name={qtyId}
+                inputProps={{
+                  "data-i" : `${i}`,
+                  "data-property" : "ingredient_qty"
+                }}
+                value={newIngredients[i].ingredient_qty}
+                onChange={newIngredientChange}
+                variant="outlined"
+              />
+              <IconButton
+                color="secondary"
+                aria-label="remove ingredient"
+                component="span"
+                onClick={() => removeNewIngredient(i)}
+              >
+                <DeleteIcon />
+              </IconButton>
+            </div>
+          );
+        })}
+        <Fab variant="extended" color="primary" onClick={addNewIngredient}>
           <AddIcon className={classes.extendedIcon} />
           Add Ingredient
         </Fab>
@@ -128,7 +200,7 @@ function MealEdit() {
             id="name"
             name="name"
             label="Meal Name"
-            value={meal.name}
+            value={meal?.name}
             onChange={mealChange}
             variant="outlined"
           />
@@ -138,7 +210,7 @@ function MealEdit() {
             multiline
             rowsMax={4}
             label="Meal Description"
-            value={meal.description}
+            value={meal?.description}
             onChange={mealChange}
             variant="outlined"
           />
@@ -146,7 +218,7 @@ function MealEdit() {
             id="image"
             name="image"
             label="Meal Image URL"
-            value={meal.image}
+            value={meal?.image}
             onChange={mealChange}
             variant="outlined"
           />
@@ -154,7 +226,7 @@ function MealEdit() {
             id="portions"
             name="portions"
             label="Number of Portions"
-            value={meal.portions}
+            value={meal?.portions}
             onChange={mealChange}
             variant="outlined"
           />
@@ -162,7 +234,7 @@ function MealEdit() {
             id="date"
             name="date"
             label="Date Made"
-            value={meal.date}
+            value={meal?.date}
             onChange={mealChange}
             variant="outlined"
           />
