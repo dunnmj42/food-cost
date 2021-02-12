@@ -30,10 +30,16 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 router.post("/", rejectUnauthenticated, async (req, res) => {
   if (req.isAuthenticated()) {
     try {
-      console.log(req.body);
+      
+      let costPerMeal = 0;
+  
+      req.body.ingredients.map((ingredient) => {
+        return (costPerMeal += (ingredient.price * ingredient.ingredient_qty) / req.body.meal.portions);
+      });
+
       const mealQuery = `
-        INSERT INTO "meals" ("name", "description", "image", "date", "user_id", "portions")
-        VALUES ($1, $2, $3, $4, $5, $6)
+        INSERT INTO "meals" ("name", "description", "image", "date", "user_id", "portions", "cost_per_meal")
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
         RETURNING "id";
         `;
 
@@ -44,6 +50,7 @@ router.post("/", rejectUnauthenticated, async (req, res) => {
         req.body.meal.date,
         req.user.id,
         req.body.meal.portions,
+        costPerMeal,
       ]);
       const newMealId = mealsResult?.rows[0].id;
 
@@ -76,11 +83,17 @@ router.post("/", rejectUnauthenticated, async (req, res) => {
 router.put("/", rejectUnauthenticated, async (req, res) => {
   if (req.isAuthenticated()) {
     try {
-      console.log(req.body);
+      
+      let costPerMeal = 0;
+  
+      req.body.ingredients.map((ingredient) => {
+        return (costPerMeal += (ingredient.price * ingredient.ingredient_qty) / req.body.meal.portions);
+      });
+
       const mealQuery = `
-        UPDATE "meals" SET ("name", "description", "image", "date", "portions")
-        = ($1, $2, $3, $4, $5)
-        WHERE id = $6;
+        UPDATE "meals" SET ("name", "description", "image", "date", "portions", "cost_per_meal")
+        = ($1, $2, $3, $4, $5, $6)
+        WHERE id = $7;
       `;
 
       const mealsResult = await pool.query(mealQuery, [
@@ -89,6 +102,7 @@ router.put("/", rejectUnauthenticated, async (req, res) => {
         req.body.meal.image,
         req.body.meal.date,
         req.body.meal.portions,
+        costPerMeal,
         req.body.meal.id,
       ]);
 
