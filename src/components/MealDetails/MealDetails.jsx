@@ -40,11 +40,6 @@ function MealDetails() {
   const meal = details[0];
   const ingredients = details[1];
 
-  const [costPerMeal, setCostPerMeal] = useState(0);
-
-  console.log(meal);
-  console.log(ingredients);
-
   const handleClick = () => {
     dispatch({ type: "FETCH_DETAILS", payload: meal?.id }); 
     history.push("/edit"); 
@@ -78,7 +73,7 @@ function MealDetails() {
         </CardActions>
       </Card>
       <Paper className={classes.cpm} onClick={() => history.push("/trends")}>
-        Cost Per Meal: ${costPerMeal}
+        Cost Per Meal: ${meal?.cost_per_meal.toFixed(2)}
       </Paper>
       <Paper>
         {ingredients?.map((ingredient, i) => {

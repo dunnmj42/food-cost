@@ -22,6 +22,7 @@ CREATE TABLE "meals" (
 	"date" DATE,
 	"user_id" int,
 	"portions" int NOT NULL,
+	"cost_per_meal" real,
 	CONSTRAINT "meals_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
