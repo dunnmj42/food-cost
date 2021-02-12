@@ -10,6 +10,8 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Button from '@material-ui/core/Button';
 
+import RemoveDialog from '../RemoveDialog/RemoveDialog';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -34,6 +36,8 @@ function MealEdit() {
 
   const [newIngredients, setNewIngredients] = useState([]);
   const [ingredientsToRemove, setIngredientsToRemove] = useState([]);
+
+  const [remove, setRemove] = useState(false);
 
   const [ingredients, setIngredients] = useState(details[1]);
   const [meal, setMeal] = useState(details[0]);
@@ -82,6 +86,16 @@ function MealEdit() {
     
     dispatch({ type: "EDIT_MEAL", payload: editedMeal });
 
+    history.push("/details");
+
+  };
+
+  const handleRevert = (e) => {
+    history.push("/details");
+  };
+
+  const handleDelete = (e) => {
+    setRemove(true);
   };
 
   return (
@@ -242,9 +256,16 @@ function MealEdit() {
           />
         </div>
         <Button variant="contained" color="primary" type="submit">
-          Submit
+          Save Changes
+        </Button>
+        <Button variant="contained" onClick={handleRevert}>
+          Revert Changes
+        </Button>
+        <Button variant="contained" color="secondary" onClick={handleDelete}>
+          Remove Meal
         </Button>
       </form>
+      <RemoveDialog remove={remove} setRemove={setRemove} mealId={meal.id}/>
     </div>
   );
 }
