@@ -11,6 +11,8 @@ import AddIcon from "@material-ui/icons/Add";
 // paper for A-CPM
 import Paper from "@material-ui/core/Paper";
 
+import MealCard from '../MealCard/MealCard'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -70,6 +72,7 @@ function UserDashboard() {
           Average Cost Per Meal: ${averageCost.toFixed(2)}
         </Paper>
       </div>
+      <MealCard meal={meal} />
     </div>
   );
 }
