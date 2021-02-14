@@ -250,7 +250,7 @@ function MealEdit() {
             id="date"
             name="date"
             label="Date Made"
-            value={meal?.date}
+            value={new Date(meal?.date).toLocaleDateString("en-us")}
             onChange={mealChange}
             variant="outlined"
           />
