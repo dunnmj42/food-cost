@@ -38,6 +38,16 @@ function UserDashboard() {
 
   const meal = meals[0];
 
+  let totalCost = 0;
+  
+  for(let i = 0; i < meals?.length; i++){
+    totalCost += meals[i].cost_per_meal;
+  };
+
+  let averageCost = totalCost / meals.length;
+
+  console.log(averageCost);
+
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -60,7 +70,7 @@ function UserDashboard() {
           Add Meal
         </Fab>
         <Paper className={classes.cpm} onClick={() => history.push("/trends")}>
-          Average Cost Per Meal: $9.99
+          Average Cost Per Meal: ${averageCost.toFixed(2)}
         </Paper>
         <Link to={"/mealhistory"} className={classes.historyLink}>
           <MealCard meal={meal} />
