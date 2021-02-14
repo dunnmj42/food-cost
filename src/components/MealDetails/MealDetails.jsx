@@ -37,6 +37,10 @@ function MealDetails() {
 
   const details = useSelector((store) => store?.details);
 
+  useEffect(() => {
+    dispatch({ type: "FETCH_DETAILS", payload: meal?.id });
+  }, []);
+
   const meal = details[0];
   const ingredients = details[1];
 
