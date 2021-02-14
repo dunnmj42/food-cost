@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+
 import { makeStyles } from "@material-ui/core/styles";
 
 // floating action button
@@ -43,8 +44,6 @@ function UserDashboard() {
   };
 
   let averageCost = totalCost / meals.length;
-
-  console.log(averageCost);
 
   const classes = useStyles();
   const dispatch = useDispatch();
