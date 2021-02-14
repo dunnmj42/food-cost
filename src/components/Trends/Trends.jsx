@@ -41,6 +41,36 @@ function Trends() {
       type: "FETCH_MEALS",
     });
   }, []);
+
+  const currentMonth = new Date().getMonth();
+  const currentYear = new Date().getFullYear();
+
+  const monthMeals = meals?.filter((meal) => { 
+    let mealMonth = new Date(meal.date).getMonth();
+    let mealYear = new Date(meal.date).getFullYear();
+    return mealMonth === currentMonth && mealYear === currentYear;
+  });
+
+  let monthCost = 0;
+  
+  for(let i = 0; i < monthMeals?.length; i++){
+    monthCost += monthMeals[i].cost_per_meal;
+  };
+
+  let monthAverage = monthCost / monthMeals.length;
+
+  const yearMeals = meals?.filter((meal) => { 
+    let mealYear = new Date(meal.date).getFullYear();
+    return mealYear === currentYear;
+  });
+
+  let yearCost = 0;
+  
+  for(let i = 0; i < yearMeals?.length; i++){
+    yearCost += yearMeals[i].cost_per_meal;
+  };
+
+  let yearAverage = yearCost / yearMeals.length;
   
   let totalCost = 0;
   
@@ -54,10 +84,10 @@ function Trends() {
     <div className="container">
       <div className={classes.root}>
         <Paper className={classes.cpm} onClick={() => history.push("/trends")}>
-          Monthly Average Cost Per Meal: ${averageCost.toFixed(2)}
+          Monthly Average Cost Per Meal: ${monthAverage.toFixed(2)}
         </Paper>
         <Paper className={classes.cpm} onClick={() => history.push("/trends")}>
-          Annual Average Cost Per Meal: ${averageCost.toFixed(2)}
+          Annual Average Cost Per Meal: ${yearAverage.toFixed(2)}
         </Paper>
         <Paper className={classes.cpm} onClick={() => history.push("/trends")}>
           All-Time Average Cost Per Meal: ${averageCost.toFixed(2)}
