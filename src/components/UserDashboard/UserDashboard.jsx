@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 import { makeStyles } from "@material-ui/core/styles";
 
 // floating action button
@@ -10,7 +11,7 @@ import AddIcon from "@material-ui/icons/Add";
 // paper for A-CPM
 import Paper from "@material-ui/core/Paper";
 
-import MealCard from "../MealCard/MealCard";
+import MealCard from '../MealCard/MealCard'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +39,14 @@ function UserDashboard() {
 
   const meal = meals[0];
 
+  let totalCost = 0;
+  
+  for(let i = 0; i < meals?.length; i++){
+    totalCost += meals[i].cost_per_meal;
+  };
+
+  let averageCost = totalCost / meals.length;
+
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -60,12 +69,10 @@ function UserDashboard() {
           Add Meal
         </Fab>
         <Paper className={classes.cpm} onClick={() => history.push("/trends")}>
-          Average Cost Per Meal: $9.99
+          Average Cost Per Meal: ${averageCost.toFixed(2)}
         </Paper>
-        <Link to={"/mealhistory"} className={classes.historyLink}>
-          <MealCard meal={meal} />
-        </Link>
       </div>
+      <MealCard meal={meal} />
     </div>
   );
 }
