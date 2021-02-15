@@ -51,6 +51,13 @@ function UserDashboard() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const buttonTitle = "DETAILS";
+
+  const handleClick = () => {
+    dispatch({ type: "FETCH_DETAILS", payload: meal?.id });
+    history.push("/details");
+  };
+
   useEffect(() => {
     dispatch({
       type: "FETCH_MEALS",
@@ -76,9 +83,13 @@ function UserDashboard() {
             Average Cost Per Meal: ${averageCost.toFixed(2)}
           </Paper>
         </div>
-      </div>
-      <div className={classes.root}>
-        <MealCard meal={meal} />
+        <div>
+          <MealCard
+            meal={meal}
+            handleClick={handleClick}
+            buttonTitle={buttonTitle}
+          />
+        </div>
       </div>
     </div>
   );
