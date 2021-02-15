@@ -9,6 +9,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Button from '@material-ui/core/Button';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 import RemoveDialog from '../RemoveDialog/RemoveDialog';
 
@@ -111,7 +112,7 @@ function MealEdit() {
                 id={nameId}
                 label="Ingredient"
                 name={nameId}
-                inputProps={{
+                InputProps={{
                   "data-i" : `${i}`,
                   "data-property" : "name"
                 }}
@@ -123,9 +124,10 @@ function MealEdit() {
                 id={priceId}
                 label="Price"
                 name={priceId}
-                inputProps={{
+                InputProps={{
                   "data-i" : `${i}`,
-                  "data-property" : "price"
+                  "data-property" : "price",
+                  startAdornment: <InputAdornment position="start">$</InputAdornment>
                 }}
                 value={ingredients[i].price}
                 onChange={ingredientChange}
@@ -135,7 +137,7 @@ function MealEdit() {
                 id={qtyId}
                 label="Quantity Used"
                 name={qtyId}
-                inputProps={{
+                InputProps={{
                   "data-i" : `${i}`,
                   "data-property" : "ingredient_qty"
                 }}
@@ -164,10 +166,11 @@ function MealEdit() {
                 id={nameId}
                 label="Ingredient"
                 name={nameId}
-                inputProps={{
+                InputProps={{
                   "data-i" : `${i}`,
                   "data-property" : "name"
                 }}
+                InputLabelProps={{ shrink: true }}
                 value={newIngredients[i].name}
                 onChange={newIngredientChange}
                 variant="outlined"
@@ -176,9 +179,10 @@ function MealEdit() {
                 id={priceId}
                 label="Price"
                 name={priceId}
-                inputProps={{
+                InputProps={{
                   "data-i" : `${i}`,
-                  "data-property" : "price"
+                  "data-property" : "price",
+                  startAdornment: <InputAdornment position="start">$</InputAdornment>
                 }}
                 value={newIngredients[i].price}
                 onChange={newIngredientChange}
@@ -188,10 +192,11 @@ function MealEdit() {
                 id={qtyId}
                 label="Quantity Used"
                 name={qtyId}
-                inputProps={{
+                InputProps={{
                   "data-i" : `${i}`,
                   "data-property" : "ingredient_qty"
                 }}
+                InputLabelProps={{ shrink: true }}
                 value={newIngredients[i].ingredient_qty}
                 onChange={newIngredientChange}
                 variant="outlined"

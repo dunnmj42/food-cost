@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from '@material-ui/core/Grid';
 import TextField from "@material-ui/core/TextField";
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 import MealCard from "../MealCard/MealCard";
 
@@ -74,6 +75,7 @@ function MealDetails() {
               <TextField
                 label="Price"
                 variant="outlined"
+                InputProps={ {startAdornment: <InputAdornment position="start">$</InputAdornment>}}
                 value={ingredient?.price}
               />
               </Grid>

@@ -9,6 +9,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Button from '@material-ui/core/Button';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -87,10 +88,11 @@ function AddMeal() {
                 id={nameId}
                 label="Ingredient"
                 name={nameId}
-                inputProps={{
+                InputProps={{
                   "data-i" : `${i}`,
                   "data-property" : "name"
                 }}
+                InputLabelProps={{ shrink: true }}
                 value={ingredients[i].name}
                 onChange={ingredientChange}
                 variant="outlined"
@@ -99,9 +101,10 @@ function AddMeal() {
                 id={priceId}
                 label="Price"
                 name={priceId}
-                inputProps={{
+                InputProps={{
                   "data-i" : `${i}`,
-                  "data-property" : "price"
+                  "data-property" : "price",
+                  startAdornment: <InputAdornment position="start">$</InputAdornment>
                 }}
                 value={ingredients[i].price}
                 onChange={ingredientChange}
@@ -111,10 +114,11 @@ function AddMeal() {
                 id={qtyId}
                 label="Quantity Used"
                 name={qtyId}
-                inputProps={{
+                InputProps={{
                   "data-i" : `${i}`,
                   "data-property" : "ingredient_qty"
                 }}
+                InputLabelProps={{ shrink: true }}
                 value={ingredients[i].ingredient_qty}
                 onChange={ingredientChange}
                 variant="outlined"
