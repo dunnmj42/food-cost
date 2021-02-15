@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
-      width: "30ch",
+      width: "25ch",
     },
   },
   extendedIcon: {
@@ -100,8 +100,7 @@ function MealEdit() {
 
   return (
     <div>
-      <form autoComplete="off" onSubmit={handleSubmit}>
-        <div >
+      <form className={classes.root} autoComplete="off" onSubmit={handleSubmit}>
         {ingredients?.map((ing, i) => {
           const nameId = `name-${i}`;
           const priceId = `price-${i}`;
@@ -208,7 +207,6 @@ function MealEdit() {
             </div>
           );
         })}
-        </div>
         <Fab variant="extended" color="primary" onClick={addNewIngredient}>
           <AddIcon className={classes.extendedIcon} />
           Add Ingredient
