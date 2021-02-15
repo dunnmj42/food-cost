@@ -18,11 +18,16 @@ import TextField from "@material-ui/core/TextField";
 
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
+import MealCard from "../MealCard/MealCard";
 
 const useStyles = makeStyles((theme) => ({
-  mealcard: {
-    justifyContent: "left",
-    maxWidth: 450,
+  root: {
+    "& > *": {
+      display: "flex",
+      flexWrap: "wrap",
+      margin: "auto",
+      justifyContent: "center",
+    },
   },
   cpm: {
     margin: 40,
@@ -37,12 +42,14 @@ function MealDetails() {
 
   const details = useSelector((store) => store?.details);
 
-  useEffect(() => {
-    dispatch({ type: "FETCH_DETAILS", payload: meal?.id });
-  }, []);
+  // useEffect(() => {
+  //   dispatch({ type: "FETCH_DETAILS", payload: meal?.id });
+  // }, []);
 
   const meal = details[0];
   const ingredients = details[1];
+
+  const buttonTitle = "EDIT";
 
   const handleClick = () => {
     dispatch({ type: "FETCH_DETAILS", payload: meal?.id }); 
@@ -51,34 +58,16 @@ function MealDetails() {
 
   return (
     <div className="container">
-      <Card className={classes.mealcard}>
-        <CardHeader
-          title={meal?.name}
-          subheader={new Date(meal?.date).toLocaleDateString("en-us")}
-        />
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            alt={meal?.name}
-            height="180"
-            image={meal?.image}
-            title={meal?.name}
-          />
-          <CardContent>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {meal?.description}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary" onClick={handleClick}>
-            Edit
-          </Button>
-        </CardActions>
-      </Card>
+      <div className={classes.root}>
+      <div>
+      <MealCard meal={meal} handleClick={handleClick} buttonTitle={buttonTitle}/>
+      </div>
+      <div>
       <Paper className={classes.cpm} onClick={() => history.push("/trends")}>
         Cost Per Meal: ${meal?.cost_per_meal.toFixed(2)}
       </Paper>
+      </div>
+      <div>
       <Paper>
         {ingredients?.map((ingredient, i) => {
           return (
@@ -102,6 +91,8 @@ function MealDetails() {
           );
         })}
       </Paper>
+      </div>
+      </div>
     </div>
   );
 }
