@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Paper from "@material-ui/core/Paper";
 
-import TrendChart from "../TrendChart/TrendChart"
+import TrendChart from "../TrendChart/TrendChart";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,20 +16,13 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
     },
   },
-  extendedIcon: {
-    marginRight: theme.spacing(1),
-  },
   cpm: {
     margin: 40,
     padding: 5,
   },
-  historyLink: {
-    textDecoration: "none",
-  },
 }));
 
 function Trends() {
-
   const unsortedMeals = useSelector((store) => store?.meals);
 
   const classes = useStyles();
@@ -86,17 +79,23 @@ function Trends() {
   return (
     <div className="container">
       <div className={classes.root}>
-        <Paper className={classes.cpm}>
-          Monthly Average Cost Per Meal: ${monthAverage.toFixed(2)}
-        </Paper>
-          <TrendChart meals={monthMeals} />
-        <Paper className={classes.cpm}>
-          Annual Average Cost Per Meal: ${yearAverage.toFixed(2)}
-        </Paper>
+        <div>
+          <Paper className={classes.cpm}>
+            Monthly Average Cost Per Meal: ${monthAverage.toFixed(2)}
+          </Paper>
+        </div>
+        <TrendChart meals={monthMeals} />
+        <div>
+          <Paper className={classes.cpm}>
+            Annual Average Cost Per Meal: ${yearAverage.toFixed(2)}
+          </Paper>
+        </div>
         <TrendChart meals={yearMeals} />
-        <Paper className={classes.cpm}>
-          All-Time Average Cost Per Meal: ${averageCost.toFixed(2)}
-        </Paper>
+        <div>
+          <Paper className={classes.cpm}>
+            All-Time Average Cost Per Meal: ${averageCost.toFixed(2)}
+          </Paper>
+        </div>
         <TrendChart meals={meals} />
       </div>
     </div>
