@@ -82,7 +82,7 @@ function AddMeal() {
           const priceId = `price-${i}`;
           const qtyId = `qty-${i}`;
           return (
-            <div key={i}>
+            <div key={i} className={classes.root}>
               <TextField
                 id={nameId}
                 label="Ingredient"
@@ -134,7 +134,7 @@ function AddMeal() {
           <AddIcon className={classes.extendedIcon} />
           Add Ingredient
         </Fab>
-        <div>
+        <div className={classes.root}>
           <TextField
             id="name"
             name="name"
