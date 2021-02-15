@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { makeStyles } from "@material-ui/core/styles";
 
 import Paper from "@material-ui/core/Paper";
 
-import { Line } from "react-chartjs-2";
+import TrendChart from "../TrendChart/TrendChart"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,51 +29,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Trends() {
-  const [monthData, setMonthData] = useState({});
-  const [yearData, setYearData] = useState({});
-  const [allTimeData, setAllTimeData] = useState({});
-
-  const monthChart = () => {
-    setMonthData({
-      labels: monthLabels,
-      datasets: [
-        {
-          label: "Monthly Cost Per Meal",
-          data: monthValues,
-        },
-      ],
-    });
-  };
-
-  const yearChart = () => {
-    setYearData({
-      labels: yearLabels,
-      datasets: [
-        {
-          label: "Annual Cost Per Meal",
-          data: yearValues,
-        },
-      ],
-    });
-  };
-
-  const allTimeChart = () => {
-    setAllTimeData({
-      labels: allTimeLabels,
-      datasets: [
-        {
-          label: "All-Time Cost Per Meal",
-          data: allTimeValues,
-        },
-      ],
-    });
-  };
 
   const unsortedMeals = useSelector((store) => store?.meals);
-
-  const meals = unsortedMeals.sort(
-    (a, b) => new Date(a.date) - new Date(b.date)
-  );
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -82,13 +39,14 @@ function Trends() {
     dispatch({
       type: "FETCH_MEALS",
     });
-    monthChart();
-    yearChart();
-    allTimeChart();
   }, []);
 
   const currentMonth = new Date().getMonth();
   const currentYear = new Date().getFullYear();
+
+  const meals = unsortedMeals.sort(
+    (a, b) => new Date(a.date) - new Date(b.date)
+  );
 
   const monthMeals = meals?.filter((meal) => {
     let mealMonth = new Date(meal.date).getMonth();
@@ -96,12 +54,9 @@ function Trends() {
     return mealMonth === currentMonth && mealYear === currentYear;
   });
 
-  const monthLabels = monthMeals.map((meal) => {
-    return new Date(meal.date).toLocaleDateString("en-us");
-  });
-
-  const monthValues = monthMeals?.map((meal) => {
-    return meal.cost_per_meal.toFixed(2);
+  const yearMeals = meals?.filter((meal) => {
+    let mealYear = new Date(meal.date).getFullYear();
+    return mealYear === currentYear;
   });
 
   let monthCost = 0;
@@ -112,19 +67,6 @@ function Trends() {
 
   const monthAverage = monthCost / monthMeals.length;
 
-  const yearMeals = meals?.filter((meal) => {
-    let mealYear = new Date(meal.date).getFullYear();
-    return mealYear === currentYear;
-  });
-
-  const yearLabels = yearMeals.map((meal) => {
-    return new Date(meal.date).toLocaleDateString("en-us");
-  });
-
-  const yearValues = yearMeals?.map((meal) => {
-    return meal.cost_per_meal.toFixed(2);
-  });
-
   let yearCost = 0;
 
   for (let i = 0; i < yearMeals?.length; i++) {
@@ -132,14 +74,6 @@ function Trends() {
   }
 
   const yearAverage = yearCost / yearMeals.length;
-
-  const allTimeLabels = meals.map((meal) => {
-    return new Date(meal.date).toLocaleDateString("en-us");
-  });
-
-  const allTimeValues = meals?.map((meal) => {
-    return meal.cost_per_meal.toFixed(2);
-  });
 
   let totalCost = 0;
 
@@ -155,21 +89,15 @@ function Trends() {
         <Paper className={classes.cpm}>
           Monthly Average Cost Per Meal: ${monthAverage.toFixed(2)}
         </Paper>
-        <div>
-          <Line data={monthData} />
-        </div>
+          <TrendChart meals={monthMeals} />
         <Paper className={classes.cpm}>
           Annual Average Cost Per Meal: ${yearAverage.toFixed(2)}
         </Paper>
-        <div>
-          <Line data={yearData} />
-        </div>
+        <TrendChart meals={yearMeals} />
         <Paper className={classes.cpm}>
           All-Time Average Cost Per Meal: ${averageCost.toFixed(2)}
         </Paper>
-        <div>
-          <Line data={allTimeData} />
-        </div>
+        <TrendChart meals={meals} />
       </div>
     </div>
   );
