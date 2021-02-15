@@ -4,7 +4,6 @@ import { put, takeEvery } from 'redux-saga/effects';
 function* fetchMeals() {
   try {
     const meals = yield axios.get("/api/meals");
-    console.log("get all:", meals.data);
     yield put({ type: "SET_MEALS", payload: meals.data});
   } catch (error) {
     console.error(error);
@@ -34,7 +33,6 @@ function* editMeal(action) {
 function* removeMeal(action) {
   try {
     const removalTarget = yield axios.delete(`/api/meals/${action.payload}`);
-    console.log("Removal target:", removalTarget.data);
     yield put({ type: "FETCH_MEALS" });
   } catch (error) {
     console.error(error);
