@@ -10,12 +10,16 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
-      margin: theme.spacing(1),
-      width: "25ch",
+      display: "flex",
+      flexWrap: "nowrap",
+      margin: "auto",
+      justifyContent: "center",
+      flexGrow: 1,
     },
   },
   extendedIcon: {
@@ -76,14 +80,16 @@ function AddMeal() {
   };
 
   return (
-    <div>
-      <form className={classes.root} autoComplete="off" onSubmit={handleSubmit}>
+    <div className="container">
+      <form autoComplete="off" onSubmit={handleSubmit}>
+        <div className={classes.root}>
         {ingredients.map((ing, i) => {
           const nameId = `name-${i}`;
           const priceId = `price-${i}`;
           const qtyId = `qty-${i}`;
           return (
-            <div key={i} className={classes.root}>
+            <Grid container spacing={1} key={i}>
+              <Grid item xs={6} lg={2}>
               <TextField
                 id={nameId}
                 label="Ingredient"
@@ -97,6 +103,8 @@ function AddMeal() {
                 onChange={ingredientChange}
                 variant="outlined"
               />
+              </Grid>
+              <Grid item xs={3} lg={2}>
               <TextField
                 id={priceId}
                 label="Price"
@@ -110,6 +118,8 @@ function AddMeal() {
                 onChange={ingredientChange}
                 variant="outlined"
               />
+              </Grid>
+              <Grid item xs={3} lg={2}>
               <TextField
                 id={qtyId}
                 label="Quantity Used"
@@ -123,6 +133,8 @@ function AddMeal() {
                 onChange={ingredientChange}
                 variant="outlined"
               />
+              </Grid>
+              <Grid item xs={2} lg={1}>
               <IconButton
                 color="secondary"
                 aria-label="remove ingredient"
@@ -131,14 +143,23 @@ function AddMeal() {
               >
                 <DeleteIcon />
               </IconButton>
-            </div>
+              </Grid>
+            </Grid>
           );
         })}
-        <Fab variant="extended" color="primary" onClick={addIngredient}>
-          <AddIcon className={classes.extendedIcon} />
-          Add Ingredient
-        </Fab>
-        <div className={classes.root}>
+        <br/>
+        <Grid container>
+          <Grid item>
+            <Fab variant="extended" color="primary" onClick={addIngredient}>
+              <AddIcon className={classes.extendedIcon} />
+              Add Ingredient
+            </Fab>
+          </Grid>
+        </Grid>
+        <br/>
+        </div>
+        <Grid container spacing={2} className={classes.root}>
+          <Grid item>
           <TextField
             id="name"
             name="name"
@@ -147,6 +168,8 @@ function AddMeal() {
             onChange={mealChange}
             variant="outlined"
           />
+          </Grid>
+          <Grid item>
           <TextField
             id="description"
             name="description"
@@ -157,6 +180,8 @@ function AddMeal() {
             onChange={mealChange}
             variant="outlined"
           />
+          </Grid>
+          <Grid item>
           <TextField
             id="image"
             name="image"
@@ -165,6 +190,8 @@ function AddMeal() {
             onChange={mealChange}
             variant="outlined"
           />
+          </Grid>
+          <Grid item>
           <TextField
             id="portions"
             name="portions"
@@ -173,6 +200,8 @@ function AddMeal() {
             onChange={mealChange}
             variant="outlined"
           />
+          </Grid>
+          <Grid item>
           <TextField
             id="date"
             name="date"
@@ -181,10 +210,16 @@ function AddMeal() {
             onChange={mealChange}
             variant="outlined"
           />
-        </div>
-        <Button variant="contained" color="primary" type="submit">
-          Submit
-        </Button>
+          </Grid>
+        </Grid>
+        <br/>
+        <Grid container spacing={2} className={classes.root}>
+          <Grid item xs>
+            <Button variant="contained" color="primary" type="submit">
+              Submit
+            </Button>
+          </Grid>
+        </Grid>
       </form>
     </div>
   );
