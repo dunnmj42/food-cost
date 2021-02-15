@@ -220,7 +220,7 @@ function MealEdit() {
                 variant="outlined"
               />
               </Grid>
-              <Grid item xs={2} lg={2}>
+              <Grid item xs={2} lg={1}>
               <IconButton
                 color="secondary"
                 aria-label="remove ingredient"
