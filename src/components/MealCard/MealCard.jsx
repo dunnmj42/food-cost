@@ -16,7 +16,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
-  mealcard: {
+  mealCard: {
     justifyContent: "left",
     maxWidth: 450
   },
@@ -35,9 +35,10 @@ function MealCard({ meal }) {
 
   return (
     <>
-      <Card className={classes.mealcard} key={meal?.id}>
+      <Card className={classes.mealCard} key={meal?.id}>
         <CardHeader
           title={meal?.name}
+          className={classes.mealCard}
           subheader={new Date(meal?.date).toLocaleDateString("en-us")}
         />
         <CardActionArea>
