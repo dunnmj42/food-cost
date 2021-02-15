@@ -1,9 +1,5 @@
 import React from "react";
 
-import { useDispatch } from "react-redux"
-
-import { useHistory } from "react-router-dom";
-
 import { makeStyles } from "@material-ui/core/styles";
 
 import Card from "@material-ui/core/Card";
@@ -22,16 +18,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MealCard({ meal }) {
+function MealCard({ meal, handleClick, buttonTitle }) {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const history = useHistory();
-
- 
-  const handleClick = () => {
-    dispatch({ type: "FETCH_DETAILS", payload: meal?.id });
-    history.push("/details"); 
-  };
 
   return (
     <>
@@ -57,7 +45,7 @@ function MealCard({ meal }) {
         </CardActionArea>
         <CardActions>
           <Button size="small" color="primary" onClick={handleClick}>
-            Details
+            {buttonTitle}
           </Button>
         </CardActions>
       </Card>
