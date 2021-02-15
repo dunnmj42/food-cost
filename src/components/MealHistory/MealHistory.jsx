@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -24,6 +25,14 @@ function MealHistory() {
 
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const buttonTitle = "DETAILS";
+
+  const handleClick = async (i) => {
+    await dispatch({ type: "FETCH_DETAILS", payload: meals[i]?.id });
+    history.push("/details"); 
+  };
 
   useEffect(() => {
     dispatch({
@@ -37,7 +46,7 @@ function MealHistory() {
         {meals?.map((meal, i) => {
           return (
             <Grid item key={i}>
-              <MealCard meal={meal} />
+              <MealCard meal={meal} handleClick={() => handleClick(i)} buttonTitle={buttonTitle}/>
             </Grid>
           );
         })}
