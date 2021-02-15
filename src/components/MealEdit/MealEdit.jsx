@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
-      width: "25ch",
+      width: "30ch",
     },
   },
   extendedIcon: {
@@ -100,13 +100,14 @@ function MealEdit() {
 
   return (
     <div>
-      <form className={classes.root} autoComplete="off" onSubmit={handleSubmit}>
+      <form autoComplete="off" onSubmit={handleSubmit}>
+        <div >
         {ingredients?.map((ing, i) => {
           const nameId = `name-${i}`;
           const priceId = `price-${i}`;
           const qtyId = `qty-${i}`;
           return (
-            <div key={i}>
+            <div key={i} className={classes.root}>
               <TextField
                 id={nameId}
                 label="Ingredient"
@@ -159,7 +160,7 @@ function MealEdit() {
           const priceId = `price-${i}`;
           const qtyId = `qty-${i}`;
           return (
-            <div key={i}>
+            <div key={i} className={classes.root}>
               <TextField
                 id={nameId}
                 label="Ingredient"
@@ -207,11 +208,12 @@ function MealEdit() {
             </div>
           );
         })}
+        </div>
         <Fab variant="extended" color="primary" onClick={addNewIngredient}>
           <AddIcon className={classes.extendedIcon} />
           Add Ingredient
         </Fab>
-        <div>
+        <div className={classes.root}>
           <TextField
             id="name"
             name="name"
@@ -255,6 +257,7 @@ function MealEdit() {
             variant="outlined"
           />
         </div>
+        <div className={classes.root}>
         <Button variant="contained" color="primary" type="submit">
           Save Changes
         </Button>
@@ -264,8 +267,9 @@ function MealEdit() {
         <Button variant="contained" color="secondary" onClick={handleDelete}>
           Remove Meal
         </Button>
+        </div>
       </form>
-      <RemoveDialog remove={remove} setRemove={setRemove} mealId={meal.id}/>
+      <RemoveDialog remove={remove} setRemove={setRemove} mealId={meal?.id}/>
     </div>
   );
 }
