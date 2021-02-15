@@ -83,6 +83,8 @@ function UserDashboard() {
             Average Cost Per Meal: ${averageCost.toFixed(2)}
           </Paper>
         </div>
+        <p>Most Recent Meal:</p>
+        <br/>
         <div>
           <MealCard
             meal={meal}
