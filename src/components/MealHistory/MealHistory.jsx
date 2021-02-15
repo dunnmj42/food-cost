@@ -29,8 +29,8 @@ function MealHistory() {
 
   const buttonTitle = "DETAILS";
 
-  const handleClick = async (i) => {
-    await dispatch({ type: "FETCH_DETAILS", payload: meals[i]?.id });
+  const handleClick = (i) => {
+    dispatch({ type: "FETCH_DETAILS", payload: meals[i]?.id });
     history.push("/details"); 
   };
 
