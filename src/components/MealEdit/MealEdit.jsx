@@ -10,14 +10,18 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import Grid from "@material-ui/core/Grid";
 
 import RemoveDialog from '../RemoveDialog/RemoveDialog';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
-      margin: theme.spacing(1),
-      width: "25ch",
+      display: "flex",
+      flexWrap: "nowrap",
+      margin: "auto",
+      justifyContent: "center",
+      flexGrow: 1,
     },
   },
   extendedIcon: {
@@ -100,14 +104,16 @@ function MealEdit() {
   };
 
   return (
-    <div>
-      <form className={classes.root} autoComplete="off" onSubmit={handleSubmit}>
+    <div className="container">
+      <form autoComplete="off" onSubmit={handleSubmit}>
+      <div className={classes.root}>
         {ingredients?.map((ing, i) => {
           const nameId = `name-${i}`;
           const priceId = `price-${i}`;
           const qtyId = `qty-${i}`;
           return (
-            <div key={i} className={classes.root}>
+            <Grid container spacing={1} key={i}>
+              <Grid item xs={6} lg={2}>
               <TextField
                 id={nameId}
                 label="Ingredient"
@@ -120,6 +126,8 @@ function MealEdit() {
                 onChange={ingredientChange}
                 variant="outlined"
               />
+              </Grid>
+              <Grid item xs={3} lg={2}>
               <TextField
                 id={priceId}
                 label="Price"
@@ -133,6 +141,8 @@ function MealEdit() {
                 onChange={ingredientChange}
                 variant="outlined"
               />
+              </Grid>
+              <Grid item xs={3} lg={2}>
               <TextField
                 id={qtyId}
                 label="Quantity Used"
@@ -145,6 +155,8 @@ function MealEdit() {
                 onChange={ingredientChange}
                 variant="outlined"
               />
+              </Grid>
+              <Grid item xs={2} lg={2}>
               <IconButton
                 color="secondary"
                 aria-label="remove ingredient"
@@ -153,7 +165,8 @@ function MealEdit() {
               >
                 <DeleteIcon />
               </IconButton>
-            </div>
+              </Grid>
+            </Grid>
           );
         })}
         {newIngredients?.map((ing, i) => {
@@ -161,7 +174,8 @@ function MealEdit() {
           const priceId = `price-${i}`;
           const qtyId = `qty-${i}`;
           return (
-            <div key={i} className={classes.root}>
+            <Grid container spacing={1} key={i} className={classes.root}>
+              <Grid item xs={6} lg={2}>
               <TextField
                 id={nameId}
                 label="Ingredient"
@@ -175,6 +189,8 @@ function MealEdit() {
                 onChange={newIngredientChange}
                 variant="outlined"
               />
+              </Grid>
+              <Grid item xs={3} lg={2}>
               <TextField
                 id={priceId}
                 label="Price"
@@ -188,6 +204,8 @@ function MealEdit() {
                 onChange={newIngredientChange}
                 variant="outlined"
               />
+              </Grid>
+              <Grid item xs={3} lg={2}>
               <TextField
                 id={qtyId}
                 label="Quantity Used"
@@ -201,6 +219,8 @@ function MealEdit() {
                 onChange={newIngredientChange}
                 variant="outlined"
               />
+              </Grid>
+              <Grid item xs={2} lg={2}>
               <IconButton
                 color="secondary"
                 aria-label="remove ingredient"
@@ -209,14 +229,24 @@ function MealEdit() {
               >
                 <DeleteIcon />
               </IconButton>
-            </div>
+              </Grid>
+            </Grid>
           );
         })}
-        <Fab variant="extended" color="primary" onClick={addNewIngredient}>
-          <AddIcon className={classes.extendedIcon} />
-          Add Ingredient
-        </Fab>
-        <div className={classes.root}>
+        <br/>
+        <Grid container>
+          <Grid item>
+            <Fab variant="extended" color="primary" onClick={addNewIngredient}>
+              <AddIcon className={classes.extendedIcon} />
+              Add Ingredient
+            </Fab>
+          </Grid>
+        </Grid>
+        <br/>
+        </div>
+        <div>
+        <Grid container spacing={2} className={classes.root}>
+          <Grid item>
           <TextField
             id="name"
             name="name"
@@ -225,6 +255,8 @@ function MealEdit() {
             onChange={mealChange}
             variant="outlined"
           />
+          </Grid>
+          <Grid item>
           <TextField
             id="description"
             name="description"
@@ -235,6 +267,8 @@ function MealEdit() {
             onChange={mealChange}
             variant="outlined"
           />
+          </Grid>
+          <Grid item>
           <TextField
             id="image"
             name="image"
@@ -243,6 +277,8 @@ function MealEdit() {
             onChange={mealChange}
             variant="outlined"
           />
+          </Grid>
+          <Grid item>
           <TextField
             id="portions"
             name="portions"
@@ -251,6 +287,8 @@ function MealEdit() {
             onChange={mealChange}
             variant="outlined"
           />
+          </Grid>
+          <Grid item>
           <TextField
             id="date"
             name="date"
@@ -259,18 +297,27 @@ function MealEdit() {
             onChange={mealChange}
             variant="outlined"
           />
+          </Grid>
+        </Grid>
         </div>
-        <div className={classes.root}>
+        <br/>
+        <Grid container spacing={2} className={classes.root}>
+        <Grid item xs>
         <Button variant="contained" color="primary" type="submit">
           Save Changes
         </Button>
+        </Grid>
+        <Grid item xs>
         <Button variant="contained" onClick={handleRevert}>
           Revert Changes
         </Button>
+        </Grid>
+        <Grid item xs>
         <Button variant="contained" color="secondary" onClick={handleDelete}>
           Remove Meal
         </Button>
-        </div>
+        </Grid>
+        </Grid>
       </form>
       <RemoveDialog remove={remove} setRemove={setRemove} mealId={meal?.id}/>
     </div>
