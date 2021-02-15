@@ -11,7 +11,7 @@ import AddIcon from "@material-ui/icons/Add";
 // paper for A-CPM
 import Paper from "@material-ui/core/Paper";
 
-import MealCard from '../MealCard/MealCard'
+import MealCard from "../MealCard/MealCard";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,10 +40,10 @@ function UserDashboard() {
   const meal = meals[0];
 
   let totalCost = 0;
-  
-  for(let i = 0; i < meals?.length; i++){
+
+  for (let i = 0; i < meals?.length; i++) {
     totalCost += meals[i].cost_per_meal;
-  };
+  }
 
   let averageCost = totalCost / meals.length;
 
@@ -68,11 +68,18 @@ function UserDashboard() {
           <AddIcon className={classes.extendedIcon} />
           Add Meal
         </Fab>
-        <Paper className={classes.cpm} onClick={() => history.push("/trends")}>
-          Average Cost Per Meal: ${averageCost.toFixed(2)}
-        </Paper>
+        <div>
+          <Paper
+            className={classes.cpm}
+            onClick={() => history.push("/trends")}
+          >
+            Average Cost Per Meal: ${averageCost.toFixed(2)}
+          </Paper>
+        </div>
       </div>
-      <MealCard meal={meal} />
+      <div className={classes.root}>
+        <MealCard meal={meal} />
+      </div>
     </div>
   );
 }
