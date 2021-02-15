@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Paper from "@material-ui/core/Paper";
-
+import Grid from '@material-ui/core/Grid';
 import TextField from "@material-ui/core/TextField";
 
 import MealCard from "../MealCard/MealCard";
@@ -15,14 +15,18 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       display: "flex",
-      flexWrap: "wrap",
+      flexWrap: "nowrap",
       margin: "auto",
       justifyContent: "center",
+      flexGrow: 1,
     },
   },
   cpm: {
     margin: 40,
     padding: 5,
+  },
+  fieldWidth: {
+    width: 25,
   },
 }));
 
@@ -55,29 +59,43 @@ function MealDetails() {
       </Paper>
       </div>
       <div>
-      <Paper>
+      <Grid container spacing={2} className={classes.root}>
         {ingredients?.map((ingredient, i) => {
           return (
-            <Paper key={i}>
+            <Grid container spacing={2} key={i}>
+              <Grid item>
               <TextField
                 label="Ingredient"
                 variant="outlined"
                 value={ingredient?.name}
               />
+              </Grid>
+              <Grid item>
               <TextField
                 label="Price"
                 variant="outlined"
                 value={ingredient?.price}
               />
+              </Grid>
+              <Grid item>
               <TextField
                 label="Quantity Used"
                 variant="outlined"
                 value={ingredient?.ingredient_qty}
               />
-            </Paper>
+              </Grid>
+            </Grid>
           );
         })}
-      </Paper>
+        <Grid item>
+          <TextField
+            label="Portions Made"
+            InputLabelProps={{ shrink: true }}
+            variant="outlined"
+            value={meal?.portions}
+          />
+        </Grid>
+      </Grid>
       </div>
       </div>
     </div>
