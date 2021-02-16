@@ -16,8 +16,6 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import UserDashboard from '../UserDashboard/UserDashboard';
 import LandingPage from '../LandingPage/LandingPage';
-import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
 import MealHistory from '../MealHistory/MealHistory';
 import AddMeal from '../AddMeal/AddMeal';
 import MealDetails from '../MealDetails/MealDetails';
@@ -105,27 +103,6 @@ function App() {
           {/* When a value is supplied for the authRedirect prop the user will
             be redirected to the path supplied when logged in, otherwise they will
             be taken to the component and path supplied. */}
-          <ProtectedRoute
-            // with authRedirect:
-            // - if logged in, redirects to "/user"
-            // - else shows LoginPage at /login
-            exact
-            path="/login"
-            authRedirect="/user"
-          >
-            <LoginPage />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            // with authRedirect:
-            // - if logged in, redirects to "/user"
-            // - else shows RegisterPage at "/registration"
-            exact
-            path="/registration"
-            authRedirect="/user"
-          >
-            <RegisterPage />
-          </ProtectedRoute>
 
           <ProtectedRoute
             // with authRedirect:
