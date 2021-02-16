@@ -11,6 +11,12 @@ import AddIcon from "@material-ui/icons/Add";
 import Button from "@material-ui/core/Button";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Grid from "@material-ui/core/Grid";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,6 +48,7 @@ function AddMeal() {
   };
   const [ingredients, setIngredients] = useState([{ ...blankIngredient }]);
   const [meal, setMeal] = useState({ ...blankMeal });
+  const [validationAlert, setValidationAlert] = useState(false);
 
   const addIngredient = () => {
     setIngredients([...ingredients, { ...blankIngredient }]);
@@ -69,14 +76,34 @@ function AddMeal() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let newMeal = { meal, ingredients };
-    console.log(newMeal);
-    dispatch({ type: "NEW_MEAL", payload: newMeal });
+    if (
+      meal.name &&
+      meal.description &&
+      meal.portions &&
+      meal.date &&
+      ingredients[0].name &&
+      ingredients[0].price &&
+      ingredients[0].ingredient_qty
+    ) {
+      let newMeal = { meal, ingredients };
+      console.log(newMeal);
+      dispatch({ type: "NEW_MEAL", payload: newMeal });
 
-    setMeal({ ...blankMeal });
-    setIngredients([{ ...blankIngredient }]);
+      setMeal({ ...blankMeal });
+      setIngredients([{ ...blankIngredient }]);
 
-    history.push("/mealhistory");
+      history.push("/mealhistory");
+    } else {
+      setValidationAlert(true);
+    }
+  };
+
+  const handleValidationClose = (e, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setValidationAlert(false);
   };
 
   return (
@@ -113,9 +140,11 @@ function AddMeal() {
                       "data-i": `${i}`,
                       "data-property": "price",
                     }}
-                    InputProps={{startAdornment: (
-                      <InputAdornment position="start">$</InputAdornment>
-                    )}}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">$</InputAdornment>
+                      ),
+                    }}
                     value={ingredients[i].price}
                     onChange={ingredientChange}
                     variant="outlined"
@@ -223,6 +252,16 @@ function AddMeal() {
           </Grid>
         </Grid>
       </form>
+      <Snackbar
+        open={validationAlert}
+        autoHideDuration={8000}
+        onClose={handleValidationClose}
+      >
+        <Alert onClose={handleValidationClose} severity="warning">
+          Meals must contain a name, description, date, portion count, and
+          single ingredient to be added!
+        </Alert>
+      </Snackbar>
     </div>
   );
 }
