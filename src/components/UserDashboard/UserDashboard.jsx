@@ -76,21 +76,29 @@ function UserDashboard() {
           Add Meal
         </Fab>
         <div>
-          <Paper
-            className={classes.cpm}
-            onClick={() => history.push("/trends")}
-          >
-            Average Cost Per Meal: ${averageCost.toFixed(2)}
-          </Paper>
+          {meal && (
+            <Paper
+              className={classes.cpm}
+              onClick={() => history.push("/trends")}
+            >
+              Average Cost Per Meal: ${averageCost.toFixed(2)}
+            </Paper>
+          )}
         </div>
-        <p>Most Recent Meal:</p>
-        <br/>
+        {meal && <p>Most Recent Meal:</p>}
+        <br />
         <div>
-          <MealCard
-            meal={meal}
-            handleClick={handleClick}
-            buttonTitle={buttonTitle}
-          />
+          {meal ? (
+            <MealCard
+              meal={meal}
+              handleClick={handleClick}
+              buttonTitle={buttonTitle}
+            />
+          ) : (
+            <center>
+              <h1>There's nothing here yet! Why not add a meal?</h1>
+            </center>
+          )}
         </div>
       </div>
     </div>
