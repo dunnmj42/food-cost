@@ -2,33 +2,40 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
 
+import Button from '@material-ui/core/Button';
+
 // CUSTOM COMPONENTS
-import RegisterForm from '../RegisterForm/RegisterForm';
+import LoginDialog from '../LoginDialog/LoginDialog';
+import RegisterDialog from '../RegisterDialog/RegisterDialog';
 
 function LandingPage() {
-  const [heading, setHeading] = useState('Welcome');
-  const history = useHistory();
-
-  const onLogin = (event) => {
-    history.push('/login');
+  const [login, setLogin] = useState(false);
+  const [register, setRegister] = useState(false);
+  
+  const handleLoginClick = () => {
+    setLogin(true);
   };
+
+  const handleRegisterClick = () => {
+    setRegister(true);
+  }
+  
 
   return (
     <div className="container">
-      <h2>{heading}</h2>
-
-      <div className="grid">
-        <div className="grid-col grid-col_8">
-          <RegisterForm />
-
           <center>
-            <h4>Already a Member?</h4>
-            <button className="btn btn_sizeSm" onClick={onLogin}>
+          <h1>Welcome</h1>
+            <h4>New User?</h4>
+            <Button variant="outlined" color="primary" onClick={handleRegisterClick}>
+              Register
+            </Button>
+            <h4>Already Have an Account?</h4>
+            <Button variant="outlined" color="primary" onClick={handleLoginClick}>
               Login
-            </button>
+            </Button>
           </center>
-        </div>
-      </div>
+      <RegisterDialog register={register} setRegister={setRegister} />
+      <LoginDialog login={login} setLogin={setLogin} />
     </div>
   );
 }
