@@ -22,7 +22,7 @@ function LogoutDialog({logout, setLogout}) {
   const handleLogout = () => {
     setLogout(false);
     dispatch({ type: "LOGOUT" });
-    history.push("/user")
+    history.push("/home")
   };
 
   const handleLogoutCancel = () => {
