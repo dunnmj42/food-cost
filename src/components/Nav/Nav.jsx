@@ -70,22 +70,30 @@ function Nav() {
     <div className={classes.root}>
       <AppBar>
         <Toolbar>
-          <IconButton
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            {title}
-          </Typography>
+          {user.id ? (
+            <>
+              <IconButton
+                onClick={handleDrawerOpen}
+                edge="start"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="menu"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" className={classes.title}>
+                {title}
+              </Typography>
+            </>
+          ) : (
+            <Typography variant="h6" className={classes.title}>
+              <center>{title}</center>
+            </Typography>
+          )}
         </Toolbar>
       </AppBar>
       <Toolbar />
-      <NavDrawer open={open} setOpen={setOpen}/>
+      <NavDrawer open={open} setOpen={setOpen} />
     </div>
   );
 }
