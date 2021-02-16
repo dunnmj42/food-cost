@@ -65,7 +65,7 @@ function RegisterDialog({ register, setRegister }) {
             required
             autoFocus
             margin="dense"
-            id="name"
+            id="regName"
             label="Username"
             type="text"
             onChange={(event) => setUsername(event.target.value)}
@@ -73,7 +73,7 @@ function RegisterDialog({ register, setRegister }) {
           <TextField
             required
             margin="dense"
-            id="password"
+            id="regPassword"
             label="Password"
             type="password"
             onChange={(event) => setPassword(event.target.value)}
