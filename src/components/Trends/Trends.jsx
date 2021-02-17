@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cpm: {
-    margin: 40,
+    margin: 10,
     padding: 5,
   },
 }));
