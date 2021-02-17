@@ -11,6 +11,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
+import placeholder from "./placeholder.png"
+
 const useStyles = makeStyles((theme) => ({
   mealCard: {
     justifyContent: "left",
@@ -34,7 +36,7 @@ function MealCard({ meal, handleClick, buttonTitle }) {
             component="img"
             alt={meal?.name}
             height="180"
-            image={meal?.image}
+            image={meal?.image || placeholder}
             title={meal?.name}
           />
           <CardContent>
@@ -44,7 +46,7 @@ function MealCard({ meal, handleClick, buttonTitle }) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary" onClick={handleClick}>
+          <Button size="small" color="inherit" onClick={handleClick}>
             {buttonTitle}
           </Button>
         </CardActions>
