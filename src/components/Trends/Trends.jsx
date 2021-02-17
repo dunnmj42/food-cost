@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Trends() {
-  const unsortedMeals = useSelector((store) => store?.meals);
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -33,6 +32,8 @@ function Trends() {
       type: "FETCH_MEALS",
     });
   }, []);
+
+  const unsortedMeals = useSelector((store) => store.meals);
 
   const currentMonth = new Date().getMonth();
   const currentYear = new Date().getFullYear();

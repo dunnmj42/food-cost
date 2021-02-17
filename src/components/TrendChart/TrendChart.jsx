@@ -3,35 +3,48 @@ import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 
 function TrendChart({meals}) {
-  const [data, setData] = useState({});
-
-  const chart = () => {
-    setData({
-      labels: labels,
-      datasets: [
-        {
-          label: "Cost Per Meal",
-          data: values,
-        },
-      ],
-    });
-  };
 
   const labels = meals.map((meal) => {
-    return new Date(meal.date).toLocaleDateString("en-us");
+    return new Date(meal.date).toLocaleDateString("en-us", {month: "numeric", day: "numeric"});
   });
 
   const values = meals?.map((meal) => {
     return meal.cost_per_meal.toFixed(2);
   });
 
+  const chart = canvas => {
+    const ctx = canvas?.getContext('2d');
+    const gradient = ctx?.createLinearGradient(0, 0, 0, 140)
+
+    gradient?.addColorStop(0, "rgba(173, 53, 186, 0.5)");
+
+    gradient?.addColorStop(1, "rgba(173, 53, 186, 0.1)");
+    
+    return {
+      labels: labels,
+      datasets: [
+        {
+          label: "Cost Per Meal",
+          data: values,
+          backgroundColor: gradient,
+          borderColor: [
+            '#AD35BA',
+          ],
+          borderWidth: 1,
+          pointBorderColor: "#888",
+          pointBackgroundColor: "rgba(173, 53, 186, 0.1)",
+        },
+      ],
+    };
+  };
+
   useEffect(() => {
     chart();
-  }, []);
+  }, [meals]);
 
   return (
     <div>
-      <Line data={data} />
+      <Line data={chart} redraw />
     </div>
   );
 }
