@@ -31,7 +31,6 @@ function MealCard({ meal, handleClick, buttonTitle }) {
           className={classes.mealCard}
           subheader={new Date(meal?.date).toLocaleDateString("en-us")}
         />
-        <CardActionArea>
           <CardMedia
             component="img"
             alt={meal?.name}
@@ -44,7 +43,6 @@ function MealCard({ meal, handleClick, buttonTitle }) {
               {meal?.description}
             </Typography>
           </CardContent>
-        </CardActionArea>
         <CardActions>
           <Button size="small" color="inherit" onClick={handleClick}>
             {buttonTitle}
