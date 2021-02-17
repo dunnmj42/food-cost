@@ -1,17 +1,30 @@
 import React from "react";
-import { Link } from 'react-router-dom';
-import "./Footer.css";
+import { Link as RouterLink } from 'react-router-dom';
+import Link from "@material-ui/core/Link"
+import { makeStyles } from '@material-ui/core/styles';
 
-// This is one of our simplest components
-// It doesn't have local state, so it can be a function component.
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is, so it doesn't need 'connect()'
+const useStyles = makeStyles({
+  root: {
+    marginTop: 80,
+    padding: 20,
+    textAlign: 'center',
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
+    right: 0,
+  }
+});
+
 
 function Footer() {
+
+  const classes = useStyles();
+
+
   return (
-    <footer>
-      &copy; Prime Digital Academy --{" "}
-      <Link to="/about">
+    <footer className={classes.root}>
+      &copy; FoodCost --{" "}
+      <Link component={RouterLink} to="/about">
         About
       </Link>
     </footer>
