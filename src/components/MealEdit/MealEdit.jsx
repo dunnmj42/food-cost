@@ -308,7 +308,7 @@ function MealEdit() {
         </Button>
         </Grid>
         <Grid item xs>
-        <Button variant="contained" onClick={handleRevert}>
+        <Button variant="contained" color="primary" onClick={handleRevert}>
           Revert Changes
         </Button>
         </Grid>

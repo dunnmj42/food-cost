@@ -81,10 +81,10 @@ function LoginDialog({ login, setLogin }) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleLoginCancel} color="primary">
+          <Button onClick={handleLoginCancel} color="inherit">
             Cancel
           </Button>
-          <Button onClick={handleLogin} color="primary">
+          <Button onClick={handleLogin} color="inherit">
             Log In
           </Button>
         </DialogActions>

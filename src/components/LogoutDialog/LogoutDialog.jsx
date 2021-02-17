@@ -44,10 +44,10 @@ function LogoutDialog({logout, setLogout}) {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleLogoutCancel} color="primary">
+            <Button onClick={handleLogoutCancel} color="inherit">
               Cancel
             </Button>
-            <Button onClick={handleLogout} color="primary">
+            <Button onClick={handleLogout} color="inherit">
               Log Out
             </Button>
           </DialogActions>

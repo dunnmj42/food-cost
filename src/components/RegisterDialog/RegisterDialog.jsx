@@ -80,10 +80,10 @@ function RegisterDialog({ register, setRegister }) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleRegisterCancel} color="primary">
+          <Button onClick={handleRegisterCancel} color="inherit">
             Cancel
           </Button>
-          <Button onClick={handleRegister} color="primary">
+          <Button onClick={handleRegister} color="inherit">
             Register
           </Button>
         </DialogActions>
