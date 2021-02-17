@@ -24,14 +24,14 @@ function LandingPage() {
         <h1>Welcome</h1>
         <h4>New User?</h4>
         <Button
-          variant="outlined"
+          variant="contained"
           color="primary"
           onClick={handleRegisterClick}
         >
           Register
         </Button>
         <h4>Already Have an Account?</h4>
-        <Button variant="outlined" color="primary" onClick={handleLoginClick}>
+        <Button variant="contained" color="primary" onClick={handleLoginClick}>
           Login
         </Button>
       </center>
