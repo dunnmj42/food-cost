@@ -41,8 +41,6 @@ function Nav() {
   const pathStr = /[a-z\/]/gi;
   const pathId = location.pathname.replace(pathStr, "");
 
-  console.log(location.pathname);
-
   const changeTitle = () => {
     if (user.id != null) {
       switch (location.pathname) {

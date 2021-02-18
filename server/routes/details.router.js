@@ -15,7 +15,6 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
       .query(mealQuery, [idToGet])
       .then((result) => {
         const meal = result.rows[0];
-        console.log(meal);
         const ingredientQuery = `
         SELECT * FROM "ingredients"
         WHERE meal_id = $1 ORDER BY id ASC;
@@ -24,7 +23,6 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
           .query(ingredientQuery, [idToGet])
           .then((result) => {
             const ingredients = result.rows;
-            console.log(ingredients);
             const details = [meal, ingredients];
             res.send(details);
           })

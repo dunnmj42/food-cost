@@ -65,7 +65,6 @@ router.post("/", rejectUnauthenticated, async (req, res) => {
           ingredient.ingredient_qty,
           newMealId,
         ]);
-        console.log(ingredientsResult);
       });
 
       res.sendStatus(201);
