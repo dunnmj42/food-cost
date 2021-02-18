@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -34,8 +34,18 @@ function MealEdit() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
+  const {id} = useParams();
+
+  useEffect(() => {
+    dispatch({ type: "FETCH_DETAILS", payload: id });
+  }, [id]);
 
   const details = useSelector((store) => store?.details);
+
+  useEffect(()=> {
+    setIngredients(details[1]);
+    setMeal(details[0]);
+  }, [details]);
 
   const blankIngredient = { name: "", price: "", ingredient_qty: "" };
 
@@ -91,12 +101,12 @@ function MealEdit() {
     
     dispatch({ type: "EDIT_MEAL", payload: editedMeal });
 
-    history.push("/details");
+    history.push(`/details/${id}`);
 
   };
 
   const handleRevert = (e) => {
-    history.push("/details");
+    history.push(`/details/${id}`);
   };
 
   const handleDelete = (e) => {
@@ -251,6 +261,7 @@ function MealEdit() {
             id="name"
             name="name"
             label="Meal Name"
+            InputLabelProps={{ shrink: meal?.name }}
             value={meal?.name}
             onChange={mealChange}
             variant="outlined"
@@ -263,6 +274,7 @@ function MealEdit() {
             multiline
             rowsMax={4}
             label="Meal Description"
+            InputLabelProps={{ shrink: meal?.description }}
             value={meal?.description}
             onChange={mealChange}
             variant="outlined"
@@ -273,6 +285,7 @@ function MealEdit() {
             id="image"
             name="image"
             label="Meal Image URL"
+            InputLabelProps={{ shrink: meal?.image }}
             value={meal?.image}
             onChange={mealChange}
             variant="outlined"
@@ -283,6 +296,7 @@ function MealEdit() {
             id="portions"
             name="portions"
             label="Number of Portions"
+            InputLabelProps={{ shrink: meal?.portions }}
             value={meal?.portions}
             onChange={mealChange}
             variant="outlined"
@@ -293,6 +307,7 @@ function MealEdit() {
             id="date"
             name="date"
             label="Date Made"
+            InputLabelProps={{ shrink: meal?.date }}
             value={new Date(meal?.date).toLocaleDateString("en-us")}
             onChange={mealChange}
             variant="outlined"
