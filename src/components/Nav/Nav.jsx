@@ -12,6 +12,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 
 // discrete component
 import NavDrawer from "../NavDrawer/NavDrawer";
+import { string } from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,6 +40,11 @@ function Nav() {
     }
   };
 
+  const pathStr = /[a-z\/]/gi
+  const pathId = location.pathname.replace(pathStr, "")
+
+  console.log(location.pathname);
+
   const changeTitle = () => {
     if (user.id != null) {
       switch (location.pathname) {
@@ -50,9 +56,9 @@ function Nav() {
           return "Meal History";
         case "/addmeal":
           return "Add Meal";
-        case "/details":
+        case `/details/${pathId}`:
           return "Meal Details";
-        case "/edit":
+        case `/edit/${pathId}`:
           return "Edit Meal";
         case "/trends":
           return "Personal Trends";
@@ -81,7 +87,7 @@ function Nav() {
               >
                 <MenuIcon />
               </IconButton>
-              <Typography variant="h6" className={classes.title}>
+              <Typography variant="h5" className={classes.title}>
                 {title}
               </Typography>
             </>
