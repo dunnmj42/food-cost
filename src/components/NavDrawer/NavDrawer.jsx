@@ -23,7 +23,10 @@ import LogoutDialog from "../LogoutDialog/LogoutDialog";
 
 
 const useStyles = makeStyles((theme) => ({
-  fixedFooter: {
+  drawerHeader:{
+    height: 56,
+  },
+  drawerFooter: {
     position: "fixed",
     bottom: 0,
     textAlign: "center",
@@ -83,12 +86,8 @@ function NavDrawer({open, setOpen}) {
     <>
       {user.id && (
         <SwipeableDrawer
-          className={classes.drawer}
           anchor="left"
           open={open}
-          classes={{
-            paper: classes.drawerPaper,
-          }}
           onOpen={handleDrawerOpen}
           onClose={handleDrawerClose}
           onClick={handleDrawerClose}
@@ -110,7 +109,7 @@ function NavDrawer({open, setOpen}) {
               );
             })}
           </List>
-          <div className={classes.fixedFooter}>
+          <div className={classes.drawerFooter}>
             <List>
               <ListItem button key="logout" onClick={handleLogoutOpen}>
                 <ListItemIcon>

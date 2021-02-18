@@ -18,9 +18,9 @@ function TrendChart({meals}) {
     const ctx = canvas?.getContext('2d');
     const gradient = ctx?.createLinearGradient(0, 0, 0, 140)
 
-    gradient?.addColorStop(0, "rgba(0, 96, 100, 0.5)");
+    gradient?.addColorStop(0, "rgba(191, 54, 12, 0.6)");
 
-    gradient?.addColorStop(1, "rgba(0, 96, 100, 0.1)");
+    gradient?.addColorStop(1, "rgba(191, 54, 12, 0.2)");
     
     return {
       labels: labels,
@@ -30,17 +30,18 @@ function TrendChart({meals}) {
           data: values,
           backgroundColor: gradient,
           borderColor: [
-            '#428e92',
+            '#f9683a',
           ],
           borderWidth: 1,
           pointBorderColor: "#999",
-          pointBackgroundColor: "rgba(173, 53, 186, 0.1)",
+          pointBackgroundColor: "rgba(191, 54, 12, 0.1)",
         },
       ],
     };
   };
 
   Chart.defaults.global.legend.display = false;
+  Chart.defaults.global.defaultFontColor = "#fff";
 
   useEffect(() => {
     chart();

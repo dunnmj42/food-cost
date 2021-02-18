@@ -68,7 +68,7 @@ function Nav() {
 
   return (
     <div className={classes.root}>
-      <AppBar color="primary">
+      <AppBar color="secondary">
         <Toolbar>
           {user.id ? (
             <>
