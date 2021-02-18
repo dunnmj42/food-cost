@@ -11,6 +11,7 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
 import MealCard from "../MealCard/MealCard";
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -107,6 +108,16 @@ function MealDetails() {
             </Grid>
           </Grid>
         </div>
+        <br />
+        <center>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => history.push("/mealhistory")}
+          >
+            Go Back
+          </Button>
+        </center>
       </div>
     </div>
   );
