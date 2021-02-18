@@ -25,8 +25,16 @@ const theme = createMuiTheme({
     background: {
       default: "#1c313a",
       paper: "#455a64"
-    }
+    },
   },
+
+  typography: {
+    fontFamily: [
+      'Play',
+      'sans-serif',
+    ].join(',',)
+  },
+  
 });
 
 const sagaMiddleware = createSagaMiddleware();

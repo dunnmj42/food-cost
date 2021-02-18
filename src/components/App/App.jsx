@@ -8,6 +8,8 @@ import {
 
 import { useDispatch } from 'react-redux';
 
+import './App.css';
+
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 
@@ -22,7 +24,7 @@ import MealDetails from '../MealDetails/MealDetails';
 import MealEdit from '../MealEdit/MealEdit';
 import Trends from '../Trends/Trends';
 
-import './App.css';
+
 
 function App() {
   const dispatch = useDispatch();
