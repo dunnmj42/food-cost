@@ -30,11 +30,11 @@ const theme = createMuiTheme({
 
   typography: {
     fontFamily: [
-      'Play',
+      'Montserrat',
       'sans-serif',
     ].join(',',)
   },
-  
+
 });
 
 const sagaMiddleware = createSagaMiddleware();
