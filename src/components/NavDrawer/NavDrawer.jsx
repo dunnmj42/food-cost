@@ -21,9 +21,8 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 import LogoutDialog from "../LogoutDialog/LogoutDialog";
 
-
 const useStyles = makeStyles((theme) => ({
-  drawerHeader:{
+  drawerHeader: {
     height: 56,
   },
   drawerFooter: {
@@ -34,9 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-function NavDrawer({open, setOpen}) {
-
+function NavDrawer({ open, setOpen }) {
   const classes = useStyles();
   const history = useHistory();
 
@@ -121,9 +118,9 @@ function NavDrawer({open, setOpen}) {
           </div>
         </SwipeableDrawer>
       )}
-      <LogoutDialog logout={logout} setLogout={setLogout}/>
+      <LogoutDialog logout={logout} setLogout={setLogout} />
     </>
   );
-};
+}
 
 export default NavDrawer;

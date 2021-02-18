@@ -87,7 +87,7 @@ function AddMeal() {
       ingredients[0].ingredient_qty
     ) {
       let newMeal = { meal, ingredients };
-      console.log(newMeal);
+
       dispatch({ type: "NEW_MEAL", payload: newMeal });
 
       setMeal({ ...blankMeal });

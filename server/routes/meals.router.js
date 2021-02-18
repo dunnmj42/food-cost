@@ -5,7 +5,6 @@ const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware.js");
 
-
 router.get("/", rejectUnauthenticated, (req, res) => {
   if (req.isAuthenticated()) {
     const query = `
@@ -26,15 +25,15 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   }
 });
 
-
 router.post("/", rejectUnauthenticated, async (req, res) => {
   if (req.isAuthenticated()) {
     try {
-      
       let costPerMeal = 0;
-  
+
       req.body.ingredients.map((ingredient) => {
-        return (costPerMeal += (ingredient.price * ingredient.ingredient_qty) / req.body.meal.portions);
+        return (costPerMeal +=
+          (ingredient.price * ingredient.ingredient_qty) /
+          req.body.meal.portions);
       });
 
       const mealQuery = `
@@ -64,13 +63,12 @@ router.post("/", rejectUnauthenticated, async (req, res) => {
           ingredient.name,
           ingredient.price,
           ingredient.ingredient_qty,
-          newMealId
+          newMealId,
         ]);
-        console.log(ingredientsResult)
+        console.log(ingredientsResult);
       });
-      
-      res.sendStatus(201);
 
+      res.sendStatus(201);
     } catch (error) {
       console.error(error);
       res.sendStatus(500);
@@ -83,11 +81,12 @@ router.post("/", rejectUnauthenticated, async (req, res) => {
 router.put("/", rejectUnauthenticated, async (req, res) => {
   if (req.isAuthenticated()) {
     try {
-      
       let costPerMeal = 0;
-  
+
       req.body.ingredients.map((ingredient) => {
-        return (costPerMeal += (ingredient.price * ingredient.ingredient_qty) / req.body.meal.portions);
+        return (costPerMeal +=
+          (ingredient.price * ingredient.ingredient_qty) /
+          req.body.meal.portions);
       });
 
       const mealQuery = `
@@ -141,13 +140,13 @@ router.put("/", rejectUnauthenticated, async (req, res) => {
       `;
 
       await req.body.ingredientsToRemove.forEach(async (ingredient) => {
-        const removeIngredientsResult = await pool.query(removeIngredientsQuery, [
-          ingredient.id
-        ]);
+        const removeIngredientsResult = await pool.query(
+          removeIngredientsQuery,
+          [ingredient.id]
+        );
       });
-      
-      res.sendStatus(200);
 
+      res.sendStatus(200);
     } catch (error) {
       console.error(error);
       res.sendStatus(500);

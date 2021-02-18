@@ -14,15 +14,14 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-function LogoutDialog({logout, setLogout}) {
-
+function LogoutDialog({ logout, setLogout }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const handleLogout = () => {
     setLogout(false);
     dispatch({ type: "LOGOUT" });
-    history.push("/home")
+    history.push("/home");
   };
 
   const handleLogoutCancel = () => {
@@ -32,28 +31,28 @@ function LogoutDialog({logout, setLogout}) {
   return (
     <>
       <Dialog
-          open={logout}
-          TransitionComponent={Transition}
-          keepMounted
-          onClose={handleLogoutCancel}
-        >
-          <DialogTitle id="alert-dialog-slide-title">{"Logout?"}</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-slide-description">
-              Are you sure you'd like to log out?
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleLogoutCancel} color="inherit">
-              Cancel
-            </Button>
-            <Button onClick={handleLogout} color="inherit">
-              Log Out
-            </Button>
-          </DialogActions>
-        </Dialog>
+        open={logout}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleLogoutCancel}
+      >
+        <DialogTitle id="alert-dialog-slide-title">{"Logout?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+            Are you sure you'd like to log out?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleLogoutCancel} color="inherit">
+            Cancel
+          </Button>
+          <Button onClick={handleLogout} color="inherit">
+            Log Out
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
-};
+}
 
 export default LogoutDialog;

@@ -9,7 +9,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
-import TextField from "@material-ui/core/TextField"
+import TextField from "@material-ui/core/TextField";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -25,7 +25,6 @@ function LoginDialog({ login, setLogin }) {
   const history = useHistory();
 
   const handleLogin = () => {
-    
     if (username && password) {
       dispatch({
         type: "LOGIN",

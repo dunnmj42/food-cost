@@ -17,24 +17,20 @@ const theme = createMuiTheme({
   palette: {
     type: "dark",
     primary: {
-      main: "#455a64"
+      main: "#455a64",
     },
     secondary: {
-      main: "#bf360c"
+      main: "#bf360c",
     },
     background: {
       default: "#1c313a",
-      paper: "#455a64"
+      paper: "#455a64",
     },
   },
 
   typography: {
-    fontFamily: [
-      'Montserrat',
-      'sans-serif',
-    ].join(',',)
+    fontFamily: ["Montserrat", "sans-serif"].join(","),
   },
-
 });
 
 const sagaMiddleware = createSagaMiddleware();

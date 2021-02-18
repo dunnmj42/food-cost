@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 function UserDashboard() {
   const meals = useSelector((store) => store?.meals);
-  const user = useSelector((store) => store?.user)
+  const user = useSelector((store) => store?.user);
 
   const meal = meals[0];
 
@@ -68,7 +68,7 @@ function UserDashboard() {
     <div className="container">
       <div className={classes.root}>
         <h3>Welcome {user.username}!</h3>
-        <br/>
+        <br />
         {meal && <p>Your Most Recent Meal:</p>}
         <br />
         <div>

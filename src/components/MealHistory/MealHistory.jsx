@@ -10,7 +10,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import Paper from "@material-ui/core/Paper";
-import Grow from '@material-ui/core/Grow';
+import Grow from "@material-ui/core/Grow";
 
 import MealCard from "../MealCard/MealCard";
 
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
   searchPaper: {
     marginBottom: 20,
-    alignItems: 'center',
+    alignItems: "center",
   },
   input: {
     marginLeft: theme.spacing(1),
@@ -34,11 +34,10 @@ const useStyles = makeStyles((theme) => ({
   },
   iconButton: {
     padding: 10,
-  }
+  },
 }));
 
 function MealHistory() {
-
   useEffect(() => {
     dispatch({
       type: "FETCH_MEALS",
@@ -61,8 +60,7 @@ function MealHistory() {
   };
 
   const meals = allMeals.filter((meal) => {
-    if (search == null)
-      return allMeals;
+    if (search == null) return allMeals;
     else if (meal?.name?.toLowerCase().includes(search.toLowerCase()))
       return meal;
   });
@@ -70,27 +68,27 @@ function MealHistory() {
   return (
     <div className={classes.gridDiv}>
       <Grow in={true}>
-      <Paper component="form" className={classes.searchPaper}>
-        <TextField
-          id="search"
-          placeholder="Search"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  type="submit"
-                  className={classes.iconButton}
-                  aria-label="search"
-                >
-                  <SearchIcon />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-          variant="outlined"
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </Paper>
+        <Paper component="form" className={classes.searchPaper}>
+          <TextField
+            id="search"
+            placeholder="Search"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    type="submit"
+                    className={classes.iconButton}
+                    aria-label="search"
+                  >
+                    <SearchIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+            variant="outlined"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </Paper>
       </Grow>
       <Grid
         container
@@ -102,13 +100,13 @@ function MealHistory() {
         {meals?.map((meal, i) => {
           return (
             <Grow in={meal}>
-            <Grid item key={i}>
-              <MealCard
-                meal={meal}
-                handleClick={() => handleClick(i)}
-                buttonTitle={buttonTitle}
-              />
-            </Grid>
+              <Grid item key={i}>
+                <MealCard
+                  meal={meal}
+                  handleClick={() => handleClick(i)}
+                  buttonTitle={buttonTitle}
+                />
+              </Grid>
             </Grow>
           );
         })}

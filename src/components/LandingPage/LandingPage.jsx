@@ -22,8 +22,8 @@ function LandingPage() {
     <div className="container">
       <center>
         <h1>Welcome</h1>
-        <br/>
-        <br/>
+        <br />
+        <br />
         <h4>New User?</h4>
         <Button
           variant="contained"

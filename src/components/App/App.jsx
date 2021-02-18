@@ -1,36 +1,34 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import {
   HashRouter as Router,
   Route,
   Redirect,
   Switch,
-} from 'react-router-dom';
+} from "react-router-dom";
 
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 
-import './App.css';
+import "./App.css";
 
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
+import Nav from "../Nav/Nav";
+import Footer from "../Footer/Footer";
 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
-import AboutPage from '../AboutPage/AboutPage';
-import UserDashboard from '../UserDashboard/UserDashboard';
-import LandingPage from '../LandingPage/LandingPage';
-import MealHistory from '../MealHistory/MealHistory';
-import AddMeal from '../AddMeal/AddMeal';
-import MealDetails from '../MealDetails/MealDetails';
-import MealEdit from '../MealEdit/MealEdit';
-import Trends from '../Trends/Trends';
-
-
+import AboutPage from "../AboutPage/AboutPage";
+import UserDashboard from "../UserDashboard/UserDashboard";
+import LandingPage from "../LandingPage/LandingPage";
+import MealHistory from "../MealHistory/MealHistory";
+import AddMeal from "../AddMeal/AddMeal";
+import MealDetails from "../MealDetails/MealDetails";
+import MealEdit from "../MealEdit/MealEdit";
+import Trends from "../Trends/Trends";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: "FETCH_USER" });
   }, [dispatch]);
 
   return (
