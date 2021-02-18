@@ -67,24 +67,7 @@ function UserDashboard() {
   return (
     <div className="container">
       <div className={classes.root}>
-        <Fab
-          variant="extended"
-          color="primary"
-          onClick={() => history.push("/addmeal")}
-        >
-          <AddIcon className={classes.extendedIcon} />
-          Add Meal
-        </Fab>
-        <div>
-          {meal && (
-            <Paper
-              className={classes.cpm}
-              onClick={() => history.push("/trends")}
-            >
-              Average Cost Per Meal: ${averageCost.toFixed(2)}
-            </Paper>
-          )}
-        </div>
+        
         {meal && <p>Most Recent Meal:</p>}
         <br />
         <div>
@@ -99,6 +82,26 @@ function UserDashboard() {
               <h1>There's nothing here yet! Why not add a meal?</h1>
             </center>
           )}
+        </div>
+        <div>
+          {meal && (
+            <Paper
+              className={classes.cpm}
+              onClick={() => history.push("/trends")}
+            >
+              Average Cost Per Meal: ${averageCost.toFixed(2)}
+            </Paper>
+          )}
+        </div>
+        <div>
+        <Fab
+          variant="extended"
+          color="primary"
+          onClick={() => history.push("/addmeal")}
+        >
+          <AddIcon className={classes.extendedIcon} />
+          Add Meal
+        </Fab>
         </div>
       </div>
     </div>
