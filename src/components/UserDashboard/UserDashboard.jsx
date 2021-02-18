@@ -4,12 +4,11 @@ import { useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-// floating action button
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
-
-// paper for A-CPM
 import Paper from "@material-ui/core/Paper";
+import Grow from "@material-ui/core/Grow";
+import Slide from "@material-ui/core/Slide";
 
 import MealCard from "../MealCard/MealCard";
 
@@ -36,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 function UserDashboard() {
   const meals = useSelector((store) => store?.meals);
+  const user = useSelector((store) => store?.user)
 
   const meal = meals[0];
 
@@ -67,16 +67,19 @@ function UserDashboard() {
   return (
     <div className="container">
       <div className={classes.root}>
-        
-        {meal && <p>Most Recent Meal:</p>}
+        <h3>Welcome {user.username}!</h3>
+        <br/>
+        {meal && <p>Your Most Recent Meal:</p>}
         <br />
         <div>
           {meal ? (
-            <MealCard
-              meal={meal}
-              handleClick={handleClick}
-              buttonTitle={buttonTitle}
-            />
+            <Grow in={true}>
+              <MealCard
+                meal={meal}
+                handleClick={handleClick}
+                buttonTitle={buttonTitle}
+              />
+            </Grow>
           ) : (
             <center>
               <h1>There's nothing here yet! Why not add a meal?</h1>
@@ -85,23 +88,27 @@ function UserDashboard() {
         </div>
         <div>
           {meal && (
-            <Paper
-              className={classes.cpm}
-              onClick={() => history.push("/trends")}
-            >
-              Average Cost Per Meal: ${averageCost.toFixed(2)}
-            </Paper>
+            <Grow in={true}>
+              <Paper
+                className={classes.cpm}
+                onClick={() => history.push("/trends")}
+              >
+                Average Cost Per Meal: ${averageCost.toFixed(2)}
+              </Paper>
+            </Grow>
           )}
         </div>
         <div>
-        <Fab
-          variant="extended"
-          color="primary"
-          onClick={() => history.push("/addmeal")}
-        >
-          <AddIcon className={classes.extendedIcon} />
-          Add Meal
-        </Fab>
+          <Slide direction="up" in={true}>
+            <Fab
+              variant="extended"
+              color="secondary"
+              onClick={() => history.push("/addmeal")}
+            >
+              <AddIcon className={classes.extendedIcon} />
+              Add Meal
+            </Fab>
+          </Slide>
         </div>
       </div>
     </div>

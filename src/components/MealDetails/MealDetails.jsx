@@ -9,9 +9,12 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import Button from "@material-ui/core/Button";
+import Grow from "@material-ui/core/Grow";
+import Slide from "@material-ui/core/Slide"
 
 import MealCard from "../MealCard/MealCard";
-import { Button } from "@material-ui/core";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,6 +58,7 @@ function MealDetails() {
   return (
     <div className="container">
       <div className={classes.root}>
+        <Grow in={true}>
         <div>
           <MealCard
             meal={meal}
@@ -62,6 +66,8 @@ function MealDetails() {
             buttonTitle={buttonTitle}
           />
         </div>
+        </Grow>
+        <Slide direction="up" in={true}>
         <div>
           <Paper
             className={classes.cpm}
@@ -70,6 +76,8 @@ function MealDetails() {
             Cost Per Meal: ${meal?.cost_per_meal.toFixed(2)}
           </Paper>
         </div>
+        </Slide>
+        <Slide direction="up" in={true}>
         <div>
           <Grid container spacing={3} className={classes.root}>
             {ingredients?.map((ingredient, i) => {
@@ -114,7 +122,9 @@ function MealDetails() {
             </Grid>
           </Grid>
         </div>
+        </Slide>
         <br />
+        <Slide direction="up" in={true}>
         <center>
           <Button
             variant="contained"
@@ -124,6 +134,7 @@ function MealDetails() {
             Go Back
           </Button>
         </center>
+        </Slide>
       </div>
     </div>
   );

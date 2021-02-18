@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Paper from "@material-ui/core/Paper";
+import Grow from "@material-ui/core/Grow"
 
 import TrendChart from "../TrendChart/TrendChart";
 
@@ -81,21 +82,27 @@ function Trends() {
     <div className="container">
       <div className={classes.root}>
         <div>
+          <Grow in={true}>
           <Paper className={classes.cpm}>
             Monthly Average Cost Per Meal: ${monthAverage.toFixed(2)}
           </Paper>
+          </Grow>
         </div>
         <TrendChart meals={monthMeals} />
         <div>
+          <Grow in={true}>
           <Paper className={classes.cpm}>
             Annual Average Cost Per Meal: ${yearAverage.toFixed(2)}
           </Paper>
+          </Grow>
         </div>
         <TrendChart meals={yearMeals} />
         <div>
+          <Grow in={true}>
           <Paper className={classes.cpm}>
             All-Time Average Cost Per Meal: ${averageCost.toFixed(2)}
           </Paper>
+          </Grow>
         </div>
         <TrendChart meals={meals} />
       </div>

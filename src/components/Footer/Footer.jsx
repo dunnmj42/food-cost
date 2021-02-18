@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
-    marginTop: 80,
+    marginTop: 40,
     padding: 20,
     textAlign: 'center',
     left: 0,

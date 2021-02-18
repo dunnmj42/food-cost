@@ -11,6 +11,7 @@ import AddIcon from "@material-ui/icons/Add";
 import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Grid from "@material-ui/core/Grid";
+import Slide from "@material-ui/core/Slide"
 
 import RemoveDialog from '../RemoveDialog/RemoveDialog';
 
@@ -114,6 +115,7 @@ function MealEdit() {
   };
 
   return (
+    <Slide in={true}>
     <div className="container">
       <form autoComplete="off" onSubmit={handleSubmit}>
       <div className={classes.root}>
@@ -336,6 +338,7 @@ function MealEdit() {
       </form>
       <RemoveDialog remove={remove} setRemove={setRemove} mealId={meal?.id}/>
     </div>
+    </Slide>
   );
 }
 
