@@ -62,7 +62,7 @@ function UserDashboard() {
     dispatch({
       type: "FETCH_MEALS",
     });
-  }, [meals]);
+  }, []);
 
   return (
     <div className="container">
