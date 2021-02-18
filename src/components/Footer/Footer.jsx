@@ -22,7 +22,7 @@ function Footer() {
 
   return (
     <footer className={classes.root}>
-      &copy; FoodCost --{" "}
+      &copy; foodCost --{" "}
       <Link component={RouterLink} color="inherit" to="/about">
         About
       </Link>

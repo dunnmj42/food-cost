@@ -63,10 +63,10 @@ function Nav() {
         case "/trends":
           return "Personal Trends";
         default:
-          return "FoodCost";
+          return "foodCost";
       }
     } else {
-      return "FoodCost";
+      return "foodCost";
     }
   };
 
