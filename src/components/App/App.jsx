@@ -79,7 +79,7 @@ function App() {
           <ProtectedRoute
             // logged in shows AddMeal else shows LoginPage
             exact
-            path="/details"
+            path="/details/:id"
           >
             <MealDetails />
           </ProtectedRoute>
@@ -87,7 +87,7 @@ function App() {
           <ProtectedRoute
             // logged in shows AddMeal else shows LoginPage
             exact
-            path="/edit"
+            path="/edit/:id"
           >
             <MealEdit />
           </ProtectedRoute>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -30,9 +30,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MealDetails() {
+
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
+  const {id} = useParams();
+
+  useEffect(() => {
+    dispatch({ type: "FETCH_DETAILS", payload: id });
+  }, [id]);
 
   const details = useSelector((store) => store?.details);
 
@@ -43,7 +49,7 @@ function MealDetails() {
 
   const handleClick = () => {
     dispatch({ type: "FETCH_DETAILS", payload: meal?.id });
-    history.push("/edit");
+    history.push(`/edit/${meal?.id}`);
   };
 
   return (

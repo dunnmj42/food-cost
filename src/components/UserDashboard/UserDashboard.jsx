@@ -55,14 +55,14 @@ function UserDashboard() {
 
   const handleClick = () => {
     dispatch({ type: "FETCH_DETAILS", payload: meal?.id });
-    history.push("/details");
+    history.push(`/details/${meal?.id}`);
   };
 
   useEffect(() => {
     dispatch({
       type: "FETCH_MEALS",
     });
-  }, []);
+  }, [meals]);
 
   return (
     <div className="container">

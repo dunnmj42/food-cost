@@ -31,7 +31,7 @@ function MealHistory() {
 
   const handleClick = (i) => {
     dispatch({ type: "FETCH_DETAILS", payload: meals[i]?.id });
-    history.push("/details"); 
+    history.push(`/details/${meals[i]?.id}`); 
   };
 
   useEffect(() => {
