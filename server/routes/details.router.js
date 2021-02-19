@@ -24,7 +24,9 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
           .then((result) => {
             const ingredients = result.rows;
             const details = [meal, ingredients];
-            res.send(details);
+            if (meal.user_id === req.user.id) {
+              res.send(details);
+            }
           })
           .catch((error) => {
             console.error(error);

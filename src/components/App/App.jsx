@@ -117,7 +117,11 @@ function App() {
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
-            <h1>404</h1>
+            <img
+              src="https://http.cat/404.jpg"
+              alt="404 Cat Not Found"
+              style={{ width: "100%" }}
+            />
           </Route>
         </Switch>
         <Footer />
