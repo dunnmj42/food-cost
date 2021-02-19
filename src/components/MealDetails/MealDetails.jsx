@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { useHistory, useParams } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
-
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
@@ -32,21 +30,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MealDetails() {
+
+  const details = useSelector((store) => store?.details);
+
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  useEffect(() => {
-    dispatch({ type: "FETCH_DETAILS", payload: id });
-  }, [id]);
-
-  const details = useSelector((store) => store?.details);
-
   const meal = details[0];
   const ingredients = details[1];
 
   const buttonTitle = "EDIT";
+
+  useEffect(() => {
+    dispatch({ type: "FETCH_DETAILS", payload: id });
+  }, [id]);
 
   const handleClick = () => {
     dispatch({ type: "FETCH_DETAILS", payload: meal?.id });

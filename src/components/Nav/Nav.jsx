@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
-
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -25,21 +24,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Nav() {
-  const classes = useStyles();
-  const location = useLocation();
+
+  const [open, setOpen] = useState(false);
 
   const user = useSelector((store) => store.user);
 
-  const [open, setOpen] = useState(false);
+  const classes = useStyles();
+  const location = useLocation();
+
+  const pathStr = /[a-z\/]/gi;
+  const pathId = location.pathname.replace(pathStr, "");
 
   const handleDrawerOpen = () => {
     if (user.id != null) {
       setOpen(true);
     }
   };
-
-  const pathStr = /[a-z\/]/gi;
-  const pathId = location.pathname.replace(pathStr, "");
 
   const changeTitle = () => {
     if (user.id != null) {

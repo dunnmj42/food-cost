@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { makeStyles } from "@material-ui/core/styles";
-
 import Paper from "@material-ui/core/Paper";
 import Grow from "@material-ui/core/Grow";
 
@@ -24,19 +23,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Trends() {
+  const unsortedMeals = useSelector((store) => store.meals);
+
   const classes = useStyles();
   const dispatch = useDispatch();
+
+  const currentMonth = new Date().getMonth();
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     dispatch({
       type: "FETCH_MEALS",
     });
   }, []);
-
-  const unsortedMeals = useSelector((store) => store.meals);
-
-  const currentMonth = new Date().getMonth();
-  const currentYear = new Date().getFullYear();
 
   const meals = unsortedMeals.sort(
     (a, b) => new Date(a.date) - new Date(b.date)

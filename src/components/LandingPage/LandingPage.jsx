@@ -2,11 +2,11 @@ import React, { useState } from "react";
 
 import Button from "@material-ui/core/Button";
 
-// CUSTOM COMPONENTS
 import LoginDialog from "../LoginDialog/LoginDialog";
 import RegisterDialog from "../RegisterDialog/RegisterDialog";
 
 function LandingPage() {
+  
   const [login, setLogin] = useState(false);
   const [register, setRegister] = useState(false);
 

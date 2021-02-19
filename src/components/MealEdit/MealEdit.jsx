@@ -31,23 +31,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MealEdit() {
-  const classes = useStyles();
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const { id } = useParams();
-
-  useEffect(() => {
-    dispatch({ type: "FETCH_DETAILS", payload: id });
-  }, [id]);
-
-  const details = useSelector((store) => store?.details);
-
-  useEffect(() => {
-    setIngredients(details[1]);
-    setMeal(details[0]);
-  }, [details]);
-
-  const blankIngredient = { name: "", price: "", ingredient_qty: "" };
 
   const [newIngredients, setNewIngredients] = useState([]);
   const [ingredientsToRemove, setIngredientsToRemove] = useState([]);
@@ -56,6 +39,24 @@ function MealEdit() {
 
   const [ingredients, setIngredients] = useState(details[1]);
   const [meal, setMeal] = useState(details[0]);
+
+  const details = useSelector((store) => store?.details);
+
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { id } = useParams();
+
+  const blankIngredient = { name: "", price: "", ingredient_qty: "" };
+
+  useEffect(() => {
+    dispatch({ type: "FETCH_DETAILS", payload: id });
+  }, [id]);
+
+  useEffect(() => {
+    setIngredients(details[1]);
+    setMeal(details[0]);
+  }, [details]);
 
   const addNewIngredient = () => {
     setNewIngredients([...newIngredients, { ...blankIngredient }]);

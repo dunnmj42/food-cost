@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
-
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Paper from "@material-ui/core/Paper";
@@ -37,7 +36,18 @@ function UserDashboard() {
   const meals = useSelector((store) => store?.meals);
   const user = useSelector((store) => store?.user);
 
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const meal = meals[0];
+  const buttonTitle = "DETAILS";
+
+  useEffect(() => {
+    dispatch({
+      type: "FETCH_MEALS",
+    });
+  }, []);
 
   let totalCost = 0;
 
@@ -47,22 +57,10 @@ function UserDashboard() {
 
   let averageCost = totalCost / meals.length;
 
-  const classes = useStyles();
-  const dispatch = useDispatch();
-  const history = useHistory();
-
-  const buttonTitle = "DETAILS";
-
   const handleClick = () => {
     dispatch({ type: "FETCH_DETAILS", payload: meal?.id });
     history.push(`/details/${meal?.id}`);
   };
-
-  useEffect(() => {
-    dispatch({
-      type: "FETCH_MEALS",
-    });
-  }, []);
 
   return (
     <div className="container">

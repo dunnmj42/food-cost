@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
-
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -38,11 +37,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MealHistory() {
-  useEffect(() => {
-    dispatch({
-      type: "FETCH_MEALS",
-    });
-  }, []);
 
   const [search, setSearch] = useState(null);
 
@@ -53,6 +47,12 @@ function MealHistory() {
   const history = useHistory();
 
   const buttonTitle = "DETAILS";
+
+  useEffect(() => {
+    dispatch({
+      type: "FETCH_MEALS",
+    });
+  }, []);
 
   const handleClick = (i) => {
     dispatch({ type: "FETCH_DETAILS", payload: meals[i]?.id });

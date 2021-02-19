@@ -16,6 +16,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 function LoginDialog({ login, setLogin }) {
+  
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 

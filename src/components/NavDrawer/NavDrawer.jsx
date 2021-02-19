@@ -1,10 +1,8 @@
-// Imported Hooks
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 
-// Imported MUI
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Divider from "@material-ui/core/Divider";
@@ -34,27 +32,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function NavDrawer({ open, setOpen }) {
-  const classes = useStyles();
-  const history = useHistory();
 
-  const user = useSelector((store) => store.user);
   const [logout, setLogout] = useState(false);
 
-  const handleDrawerOpen = () => {
-    if (user.id != null) {
-      setOpen(true);
-    }
-  };
+  const user = useSelector((store) => store.user);
 
-  const handleDrawerClose = () => {
-    if (user.id != null) {
-      setOpen(false);
-    }
-  };
-
-  const handleLogoutOpen = () => {
-    setLogout(true);
-  };
+  const classes = useStyles();
+  const history = useHistory();
 
   const linkList = [
     {
@@ -78,6 +62,22 @@ function NavDrawer({ open, setOpen }) {
       onClick: () => history.push("/trends"),
     },
   ];
+
+  const handleDrawerOpen = () => {
+    if (user.id != null) {
+      setOpen(true);
+    }
+  };
+
+  const handleDrawerClose = () => {
+    if (user.id != null) {
+      setOpen(false);
+    }
+  };
+
+  const handleLogoutOpen = () => {
+    setLogout(true);
+  };
 
   return (
     <>

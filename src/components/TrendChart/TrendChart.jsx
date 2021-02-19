@@ -5,6 +5,11 @@ import { Line } from "react-chartjs-2";
 import Paper from "@material-ui/core/Paper";
 
 function TrendChart({ meals }) {
+
+  useEffect(() => {
+    chart();
+  }, [meals]);
+
   const labels = meals.map((meal) => {
     return new Date(meal.date).toLocaleDateString("en-us", {
       month: "numeric",
@@ -42,10 +47,6 @@ function TrendChart({ meals }) {
 
   Chart.defaults.global.legend.display = false;
   Chart.defaults.global.defaultFontColor = "#fff";
-
-  useEffect(() => {
-    chart();
-  }, [meals]);
 
   return (
     <Paper>

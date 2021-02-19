@@ -5,16 +5,13 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
-
 import { useDispatch } from "react-redux";
 
 import "./App.css";
 
 import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
-
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-
 import AboutPage from "../AboutPage/AboutPage";
 import UserDashboard from "../UserDashboard/UserDashboard";
 import LandingPage from "../LandingPage/LandingPage";
@@ -25,6 +22,7 @@ import MealEdit from "../MealEdit/MealEdit";
 import Trends from "../Trends/Trends";
 
 function App() {
+  
   const dispatch = useDispatch();
 
   useEffect(() => {

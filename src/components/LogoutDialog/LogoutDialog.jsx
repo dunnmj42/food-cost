@@ -15,6 +15,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 function LogoutDialog({ logout, setLogout }) {
+  
   const dispatch = useDispatch();
   const history = useHistory();
 
