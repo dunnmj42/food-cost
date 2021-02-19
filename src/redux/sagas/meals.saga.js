@@ -24,6 +24,7 @@ function* editMeal(action) {
   try {
     const editBatch = action.payload;
     yield axios.put("/api/meals", editBatch);
+    yield put({ type: "FETCH_DETAILS", payload: action?.payload?.meal?.id });
     yield put({ type: "FETCH_MEALS" });
   } catch (error) {
     console.error(error);
