@@ -112,8 +112,11 @@ function AddMeal() {
     e.preventDefault();
     setMeal({
       name: "Szechuan Pork and Broccoli",
-      description: "Peppercorn and nutmeg crusted pork chops with roasted broccoli, onion, brown rice, and chili crisp",
-      image: "https://images-gmi-pmc.edge-generalmills.com/cc209f64-c4ba-435f-a708-24fd2b48dd51.jpg",
+      description: 
+        `Peppercorn and nutmeg crusted pork chops with roasted broccoli, onion, 
+        brown rice, and chili crisp`,
+      image:
+        "https://iheartrecipes.com/wp-content/uploads/2017/07/IMG_3649.jpg",
       portions: "6",
       date: "2/20/2021",
     });
@@ -125,7 +128,7 @@ function AddMeal() {
       { name: "Brown Rice", price: "1.39", ingredient_qty: "1" },
       { name: "Lao Gan Ma Chili Crisp", price: "39.99", ingredient_qty: "1" },
     ]);
-  }
+  };
 
   return (
     <Slide in={true}>
@@ -147,7 +150,7 @@ function AddMeal() {
                         "data-i": `${i}`,
                         "data-property": "name",
                       }}
-                      InputLabelProps={{ shrink: true}}
+                      InputLabelProps={{ shrink: true }}
                       value={ingredients[i].name}
                       onChange={ingredientChange}
                     />
