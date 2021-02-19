@@ -268,7 +268,7 @@ function MealEdit() {
                   id="name"
                   name="name"
                   label="Meal Name"
-                  InputLabelProps={{ shrink: meal?.name }}
+                  InputLabelProps={{ shrink: true }}
                   value={meal?.name}
                   onChange={mealChange}
                   variant="outlined"
@@ -281,7 +281,7 @@ function MealEdit() {
                   multiline
                   rowsMax={4}
                   label="Meal Description"
-                  InputLabelProps={{ shrink: meal?.description }}
+                  InputLabelProps={{ shrink: true }}
                   value={meal?.description}
                   onChange={mealChange}
                   variant="outlined"
@@ -292,7 +292,7 @@ function MealEdit() {
                   id="image"
                   name="image"
                   label="Meal Image URL"
-                  InputLabelProps={{ shrink: meal?.image }}
+                  InputLabelProps={{ shrink: true }}
                   value={meal?.image}
                   onChange={mealChange}
                   variant="outlined"
@@ -303,7 +303,7 @@ function MealEdit() {
                   id="portions"
                   name="portions"
                   label="Number of Portions"
-                  InputLabelProps={{ shrink: meal?.portions }}
+                  InputLabelProps={{ shrink: true }}
                   value={meal?.portions}
                   onChange={mealChange}
                   variant="outlined"
@@ -314,7 +314,7 @@ function MealEdit() {
                   id="date"
                   name="date"
                   label="Date Made"
-                  InputLabelProps={{ shrink: meal?.date }}
+                  InputLabelProps={{ shrink: true }}
                   value={new Date(meal?.date).toLocaleDateString("en-us")}
                   onChange={mealChange}
                   variant="outlined"
