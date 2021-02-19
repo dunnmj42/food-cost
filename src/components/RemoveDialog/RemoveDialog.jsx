@@ -48,7 +48,7 @@ function LogoutDialog({ remove, setRemove, mealId }) {
           <Button onClick={handleRemoveCancel} color="inherit">
             Go Back
           </Button>
-          <Button onClick={handleRemove} color="secondary">
+          <Button onClick={handleRemove} color="secondary" variant="contained">
             Remove Meal
           </Button>
         </DialogActions>

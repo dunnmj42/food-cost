@@ -135,7 +135,6 @@ function MealEdit() {
                       }}
                       value={ingredients[i].name}
                       onChange={ingredientChange}
-                      variant="outlined"
                     />
                   </Grid>
                   <Grid item xs={3} lg={2}>
@@ -154,13 +153,12 @@ function MealEdit() {
                       }}
                       value={ingredients[i].price}
                       onChange={ingredientChange}
-                      variant="outlined"
                     />
                   </Grid>
                   <Grid item xs={3} lg={2}>
                     <TextField
                       id={qtyId}
-                      label="Quantity Used"
+                      label="Quantity"
                       name={qtyId}
                       inputProps={{
                         "data-i": `${i}`,
@@ -168,7 +166,6 @@ function MealEdit() {
                       }}
                       value={ingredients[i].ingredient_qty}
                       onChange={ingredientChange}
-                      variant="outlined"
                     />
                   </Grid>
                   <Grid item xs={2} lg={2}>
@@ -202,7 +199,6 @@ function MealEdit() {
                       InputLabelProps={{ shrink: true }}
                       value={newIngredients[i].name}
                       onChange={newIngredientChange}
-                      variant="outlined"
                     />
                   </Grid>
                   <Grid item xs={3} lg={2}>
@@ -221,7 +217,6 @@ function MealEdit() {
                       }}
                       value={newIngredients[i].price}
                       onChange={newIngredientChange}
-                      variant="outlined"
                     />
                   </Grid>
                   <Grid item xs={3} lg={2}>
@@ -236,7 +231,6 @@ function MealEdit() {
                       InputLabelProps={{ shrink: true }}
                       value={newIngredients[i].ingredient_qty}
                       onChange={newIngredientChange}
-                      variant="outlined"
                     />
                   </Grid>
                   <Grid item xs={2} lg={1}>

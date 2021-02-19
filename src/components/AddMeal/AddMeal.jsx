@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function AddMeal() {
-
+  
   const blankIngredient = { name: "", price: "", ingredient_qty: "" };
   const blankMeal = {
     name: "",
@@ -52,7 +52,7 @@ function AddMeal() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
-  
+
   const addIngredient = () => {
     setIngredients([...ingredients, { ...blankIngredient }]);
   };
@@ -108,6 +108,25 @@ function AddMeal() {
     setValidationAlert(false);
   };
 
+  const popData = (e) => {
+    e.preventDefault();
+    setMeal({
+      name: "Szechuan Pork and Broccoli",
+      description: "Peppercorn and nutmeg crusted pork chops with roasted broccoli, onion, brown rice, and chili crisp",
+      image: "https://images-gmi-pmc.edge-generalmills.com/cc209f64-c4ba-435f-a708-24fd2b48dd51.jpg",
+      portions: "6",
+      date: "2/20/2021",
+    });
+    setIngredients([
+      { name: "Pork Chops", price: "4.99", ingredient_qty: "2" },
+      { name: "Szechuan Rub", price: "12.50", ingredient_qty: "0.25" },
+      { name: "Broccoli", price: "2.59", ingredient_qty: "3" },
+      { name: "Onion", price: "1.99", ingredient_qty: "0.33" },
+      { name: "Brown Rice", price: "1.39", ingredient_qty: "1" },
+      { name: "Lao Gan Ma Chili Crisp", price: "39.99", ingredient_qty: "1" },
+    ]);
+  }
+
   return (
     <Slide in={true}>
       <div className="container">
@@ -128,10 +147,9 @@ function AddMeal() {
                         "data-i": `${i}`,
                         "data-property": "name",
                       }}
-                      InputLabelProps={{ shrink: true }}
+                      InputLabelProps={{ shrink: true}}
                       value={ingredients[i].name}
                       onChange={ingredientChange}
-                      variant="outlined"
                     />
                   </Grid>
                   <Grid item xs={3} lg={2}>
@@ -150,13 +168,12 @@ function AddMeal() {
                       }}
                       value={ingredients[i].price}
                       onChange={ingredientChange}
-                      variant="outlined"
                     />
                   </Grid>
                   <Grid item xs={3} lg={2}>
                     <TextField
                       id={qtyId}
-                      label="Quantity Used"
+                      label="Quantity"
                       name={qtyId}
                       inputProps={{
                         "data-i": `${i}`,
@@ -165,7 +182,6 @@ function AddMeal() {
                       InputLabelProps={{ shrink: true }}
                       value={ingredients[i].ingredient_qty}
                       onChange={ingredientChange}
-                      variant="outlined"
                     />
                   </Grid>
                   <Grid item xs={2} lg={1}>
@@ -265,6 +281,12 @@ function AddMeal() {
             single ingredient to be added!
           </Alert>
         </Snackbar>
+        <button
+          style={{ backgroundColor: "#1c313a", border: "none", marginTop: 160 }}
+          onClick={popData}
+        >
+          +
+        </button>
       </div>
     </Slide>
   );
