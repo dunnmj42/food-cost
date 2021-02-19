@@ -1,3 +1,4 @@
+-- Create database: "foodCost"
 
 CREATE TABLE "user" (
 	"id" serial NOT NULL,
@@ -14,7 +15,7 @@ CREATE TABLE "meals" (
 	"id" serial NOT NULL,
 	"name" varchar(255),
 	"description" TEXT,
-	"image" varchar(255),
+	"image" varchar(1000),
 	"date" DATE,
 	"user_id" int,
 	"portions" int NOT NULL,
@@ -29,7 +30,7 @@ CREATE TABLE "meals" (
 CREATE TABLE "ingredients" (
 	"id" serial NOT NULL,
 	"name" varchar(255) NOT NULL,
-	"price" int NOT NULL,
+	"price" real NOT NULL,
 	"ingredient_qty" real NOT NULL,
 	"meal_id" int NOT NULL,
 	CONSTRAINT "ingredients_pk" PRIMARY KEY ("id")
