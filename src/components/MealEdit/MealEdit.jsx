@@ -37,10 +37,10 @@ function MealEdit() {
 
   const [remove, setRemove] = useState(false);
 
+  const details = useSelector((store) => store?.details);
+
   const [ingredients, setIngredients] = useState(details[1]);
   const [meal, setMeal] = useState(details[0]);
-
-  const details = useSelector((store) => store?.details);
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -124,7 +124,7 @@ function MealEdit() {
               const qtyId = `qty-${i}`;
               return (
                 <Grid container spacing={1} key={i}>
-                  <Grid item xs={6} lg={2}>
+                  <Grid item xs={5} lg={2}>
                     <TextField
                       id={nameId}
                       label="Ingredient"
