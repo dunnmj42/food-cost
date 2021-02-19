@@ -43,4 +43,4 @@ CREATE TABLE "ingredients" (
 
 ALTER TABLE "meals" ADD CONSTRAINT "meals_fk0" FOREIGN KEY ("user_id") REFERENCES "user"("id");
 
-ALTER TABLE "ingredients" ADD CONSTRAINT "ingredients_fk0" FOREIGN KEY ("meal_id") REFERENCES "meals"("id");
+ALTER TABLE "ingredients" ADD CONSTRAINT "ingredients_fk0" FOREIGN KEY ("meal_id") REFERENCES "meals"("id") ON DELETE CASCADE ON UPDATE CASCADE;
