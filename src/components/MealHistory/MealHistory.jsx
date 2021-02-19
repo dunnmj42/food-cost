@@ -99,7 +99,7 @@ function MealHistory() {
       >
         {meals?.map((meal, i) => {
           return (
-            <Grow in={meal}>
+            <Grow in={true} key={i}>
               <Grid item key={i}>
                 <MealCard
                   meal={meal}
