@@ -117,7 +117,7 @@ function MealEdit() {
       <div className="container">
         <form autoComplete="off" onSubmit={handleSubmit}>
           <div className={classes.root}>
-            {ingredients?.map((ing, i) => {
+            {ingredients?.map((_, i) => {
               const nameId = `name-${i}`;
               const priceId = `price-${i}`;
               const qtyId = `qty-${i}`;
@@ -183,7 +183,7 @@ function MealEdit() {
                 </Grid>
               );
             })}
-            {newIngredients?.map((ing, i) => {
+            {newIngredients?.map((_, i) => {
               const nameId = `name-${i}`;
               const priceId = `price-${i}`;
               const qtyId = `qty-${i}`;
