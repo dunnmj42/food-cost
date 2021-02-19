@@ -36,14 +36,6 @@ const useStyles = makeStyles((theme) => ({
 
 function AddMeal() {
 
-  const [ingredients, setIngredients] = useState([{ ...blankIngredient }]);
-  const [meal, setMeal] = useState({ ...blankMeal });
-  const [validationAlert, setValidationAlert] = useState(false);
-
-  const classes = useStyles();
-  const dispatch = useDispatch();
-  const history = useHistory();
-
   const blankIngredient = { name: "", price: "", ingredient_qty: "" };
   const blankMeal = {
     name: "",
@@ -52,6 +44,14 @@ function AddMeal() {
     portions: "",
     date: "",
   };
+
+  const [ingredients, setIngredients] = useState([{ ...blankIngredient }]);
+  const [meal, setMeal] = useState({ ...blankMeal });
+  const [validationAlert, setValidationAlert] = useState(false);
+
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const history = useHistory();
   
   const addIngredient = () => {
     setIngredients([...ingredients, { ...blankIngredient }]);
