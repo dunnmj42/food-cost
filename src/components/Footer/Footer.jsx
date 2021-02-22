@@ -1,9 +1,12 @@
+// React, Router
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 
+// MUI
 import { makeStyles } from "@material-ui/core/styles";
 import Link from "@material-ui/core/Link";
 
+// MUI styling
 const useStyles = makeStyles({
   root: {
     marginTop: 40,

@@ -1,3 +1,4 @@
+/* Font, root height, scrollbar */
 html,
 body,
 #react-root {
@@ -7,12 +8,15 @@ body,
   font-family: "Montserrat", sans-serif;
 }
 
+/* font import */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
+/* more scrollbar */
 :-webkit-scrollbar {
   display: none;
 }
 
+/* background image - fixed and transparent overlay */
 .background::before {
   content: "";
   background-image: url("./background.png");
@@ -30,10 +34,12 @@ body,
   opacity: 0.07;
 }
 
+/* containing things in the container */
 .container {
   padding: 20px;
 }
 
+/* alert CSS leftover */
 .alert {
   box-sizing: border-box;
   padding: 15px 10px;

@@ -1,8 +1,10 @@
+// React, Redux, Router
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
 
+// MUI
+import { makeStyles } from "@material-ui/core/styles";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Divider from "@material-ui/core/Divider";
@@ -17,8 +19,10 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import TimelineIcon from "@material-ui/icons/Timeline";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
+// Component
 import LogoutDialog from "../LogoutDialog/LogoutDialog";
 
+// MUI styling
 const useStyles = makeStyles((theme) => ({
   drawerHeader: {
     height: 56,
@@ -33,13 +37,17 @@ const useStyles = makeStyles((theme) => ({
 
 function NavDrawer({ open, setOpen }) {
 
+  // Logout dialog state
   const [logout, setLogout] = useState(false);
 
+  // User store
   const user = useSelector((store) => store.user);
 
+  // Hooks
   const classes = useStyles();
   const history = useHistory();
 
+  // Link list for drawer - pushes the user to places
   const linkList = [
     {
       text: "Dashboard",
@@ -63,18 +71,21 @@ function NavDrawer({ open, setOpen }) {
     },
   ];
 
+  // Drawer open
   const handleDrawerOpen = () => {
     if (user.id != null) {
       setOpen(true);
     }
   };
 
+  // Drawer close
   const handleDrawerClose = () => {
     if (user.id != null) {
       setOpen(false);
     }
   };
 
+  // Open logout dialog
   const handleLogoutOpen = () => {
     setLogout(true);
   };

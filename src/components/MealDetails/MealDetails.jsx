@@ -1,7 +1,9 @@
+// React, Redux, Router
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
+// MUI
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -11,8 +13,10 @@ import Button from "@material-ui/core/Button";
 import Grow from "@material-ui/core/Grow";
 import Slide from "@material-ui/core/Slide";
 
+// Component
 import MealCard from "../MealCard/MealCard";
 
+// MUI styling
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -31,22 +35,28 @@ const useStyles = makeStyles((theme) => ({
 
 function MealDetails() {
 
+  // Details store
   const details = useSelector((store) => store?.details);
 
+  // Hooks
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
   const { id } = useParams();
 
+  // Declare meal and ingredients
   const meal = details[0];
   const ingredients = details[1];
 
+  // Card button title
   const buttonTitle = "EDIT";
 
+  // UseEffect for GET details
   useEffect(() => {
     dispatch({ type: "FETCH_DETAILS", payload: id });
   }, [id]);
 
+  // Push to edit click handler
   const handleClick = () => {
     dispatch({ type: "FETCH_DETAILS", payload: meal?.id });
     history.push(`/edit/${meal?.id}`);

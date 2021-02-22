@@ -1,7 +1,9 @@
+// React, Redux, Router
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+// Component
 import LandingPage from "../LandingPage/LandingPage";
 
 // A Custom Wrapper Component -- This will keep our code DRY.
@@ -15,6 +17,7 @@ import LandingPage from "../LandingPage/LandingPage";
 // and by checking req.user for authorization
 
 function ProtectedRoute(props) {
+  // User store
   const user = useSelector((store) => store.user);
 
   // Using destructuring, this takes ComponentToProtect from component

@@ -1,19 +1,25 @@
+// React
 import React, { useState } from "react";
 
+// MUI
 import Button from "@material-ui/core/Button";
 
+// Components 
 import LoginDialog from "../LoginDialog/LoginDialog";
 import RegisterDialog from "../RegisterDialog/RegisterDialog";
 
 function LandingPage() {
   
+  // State
   const [login, setLogin] = useState(false);
   const [register, setRegister] = useState(false);
 
+  // Login handler
   const handleLoginClick = () => {
     setLogin(true);
   };
 
+  // Register handler
   const handleRegisterClick = () => {
     setRegister(true);
   };

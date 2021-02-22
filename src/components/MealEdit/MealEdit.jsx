@@ -1,7 +1,9 @@
+// React, Redux, Router
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
+// MUI
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
@@ -13,8 +15,10 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Grid from "@material-ui/core/Grid";
 import Slide from "@material-ui/core/Slide";
 
+// Component
 import RemoveDialog from "../RemoveDialog/RemoveDialog";
 
+// MUI styling
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -30,38 +34,48 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MealEdit() {
+function MealEdit() { // This is a big ugly one. It SHOULD be broken up
 
+  // State for ingredient editing
   const [newIngredients, setNewIngredients] = useState([]);
   const [ingredientsToRemove, setIngredientsToRemove] = useState([]);
 
+  // Remove dialog state
   const [remove, setRemove] = useState(false);
 
+  // Details store
   const details = useSelector((store) => store?.details);
 
+  // Populate existing field state
   const [ingredients, setIngredients] = useState(details[1]);
   const [meal, setMeal] = useState(details[0]);
 
+  // Hooks
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
 
+  // Blank ingredient for dynamic form
   const blankIngredient = { name: "", price: "", ingredient_qty: "" };
 
+  // UseEffect to GET details - again on ID change
   useEffect(() => {
     dispatch({ type: "FETCH_DETAILS", payload: id });
   }, [id]);
 
+  // UseEffect sets ingredients and meals in edit form
   useEffect(() => {
     setIngredients(details[1]);
     setMeal(details[0]);
   }, [details]);
 
+  // Add a new ingredient to dynamic form
   const addNewIngredient = () => {
     setNewIngredients([...newIngredients, { ...blankIngredient }]);
   };
 
+  // Remove ingredient from form
   const removeIngredient = (i) => {
     const updatedIngredients = [...ingredients];
     const removalTarget = ingredients[i];
@@ -70,6 +84,7 @@ function MealEdit() {
     setIngredients(updatedIngredients);
   };
 
+  // Ingredient change handler
   const ingredientChange = (e) => {
     const updatedIngredients = [...ingredients];
     updatedIngredients[e.target.dataset.i][e.target.dataset.property] =
@@ -77,12 +92,14 @@ function MealEdit() {
     setIngredients(updatedIngredients);
   };
 
+  // Remove a new ingredient added in Edit view
   const removeNewIngredient = (i) => {
     const updatedNewIngredients = [...newIngredients];
     updatedNewIngredients.splice(i, 1);
     setNewIngredients(updatedNewIngredients);
   };
 
+  // New ingredient change handler
   const newIngredientChange = (e) => {
     const updatedNewIngredients = [...newIngredients];
     updatedNewIngredients[e.target.dataset.i][e.target.dataset.property] =
@@ -90,12 +107,14 @@ function MealEdit() {
     setNewIngredients(updatedNewIngredients);
   };
 
+  // Meal details change handler
   const mealChange = (e) => {
     const newMeal = { ...meal };
     newMeal[e.target.name] = e.target.value;
     setMeal(newMeal);
   };
 
+  // Handle submit to dispatch for PUT
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -105,14 +124,17 @@ function MealEdit() {
     history.push(`/details/${id}`);
   };
 
+  // Revert button handler to cancel edit and abandon
   const handleRevert = (e) => {
     history.push(`/details/${id}`);
   };
 
+  // Open remove dialog to DELETE
   const handleDelete = (e) => {
     setRemove(true);
   };
 
+  // This is a big oof down here:
   return (
     <Slide in={true}>
       <div className="container">

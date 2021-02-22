@@ -1,7 +1,9 @@
+// React, Redux, Router
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+// MUI
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
@@ -15,10 +17,12 @@ import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import Slide from "@material-ui/core/Slide";
 
+// Alert for validation snackbar
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
+// MUI styling
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -36,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 function AddMeal() {
   
+  // Blank ingredient and meal 
   const blankIngredient = { name: "", price: "", ingredient_qty: "" };
   const blankMeal = {
     name: "",
@@ -45,24 +50,29 @@ function AddMeal() {
     date: "",
   };
 
+  // State
   const [ingredients, setIngredients] = useState([{ ...blankIngredient }]);
   const [meal, setMeal] = useState({ ...blankMeal });
   const [validationAlert, setValidationAlert] = useState(false);
 
+  // Hooks
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
 
+  // Dynamic input add
   const addIngredient = () => {
     setIngredients([...ingredients, { ...blankIngredient }]);
   };
 
+  // Dynamic input remove
   const removeIngredient = (i) => {
     const newIngredients = [...ingredients];
     newIngredients.splice(i, 1);
     setIngredients(newIngredients);
   };
 
+  // Ingredient input change handler
   const ingredientChange = (e) => {
     const newIngredients = [...ingredients];
     newIngredients[e.target.dataset.i][e.target.dataset.property] =
@@ -70,15 +80,18 @@ function AddMeal() {
     setIngredients(newIngredients);
   };
 
+  // Meal inputs change handler 
   const mealChange = (e) => {
     const newMeal = { ...meal };
     newMeal[e.target.name] = e.target.value;
     setMeal(newMeal);
   };
 
+  // Form submission handler
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // VALIDATION
     if (
       meal.name &&
       meal.description &&
@@ -90,17 +103,19 @@ function AddMeal() {
     ) {
       let newMeal = { meal, ingredients };
 
+      // Dispatch and clear inputs
       dispatch({ type: "NEW_MEAL", payload: newMeal });
 
       setMeal({ ...blankMeal });
       setIngredients([{ ...blankIngredient }]);
 
-      history.push("/mealhistory");
+      history.push("/mealhistory"); // push to history
     } else {
-      setValidationAlert(true);
+      setValidationAlert(true); // validation alert
     }
   };
 
+  // Validation close handler
   const handleValidationClose = (e, reason) => {
     if (reason === "clickaway") {
       return;
@@ -108,6 +123,7 @@ function AddMeal() {
     setValidationAlert(false);
   };
 
+  // SECRET BUTTON STUFF KEEP OUT
   const popData = (e) => {
     e.preventDefault();
     setMeal({

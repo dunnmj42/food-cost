@@ -1,3 +1,4 @@
+// React, Redux, Router
 import React, { useEffect } from "react";
 import {
   HashRouter as Router,
@@ -7,8 +8,10 @@ import {
 } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
+// Literally the one CSS file
 import "./App.css";
 
+// Fresh yung components
 import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
@@ -23,8 +26,10 @@ import Trends from "../Trends/Trends";
 
 function App() {
   
+  // Hook - dispatch
   const dispatch = useDispatch();
 
+  // useEffect for GET user
   useEffect(() => {
     dispatch({ type: "FETCH_USER" });
   }, [dispatch]);
@@ -119,7 +124,7 @@ function App() {
               src="https://http.cat/404.jpg"
               alt="404 Cat Not Found"
               style={{ width: "100%" }}
-            />
+            /> {/* Cat stuff */}
           </Route>
         </Switch>
         <Footer />

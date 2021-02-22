@@ -1,7 +1,9 @@
+// React, Redux, Router
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+// MUI
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -11,19 +13,24 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import TextField from "@material-ui/core/TextField";
 
+// Transition on mount
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 function RegisterDialog({ register, setRegister }) {
+  // State
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  // Error selector
   const errors = useSelector((store) => store.errors);
 
+  // Hooks
   const dispatch = useDispatch();
   const history = useHistory();
 
+  // Registration handler function and error catch
   const handleRegister = () => {
     if (username && password) {
       dispatch({
@@ -40,6 +47,7 @@ function RegisterDialog({ register, setRegister }) {
     }
   };
 
+  // Cancel register handler
   const handleRegisterCancel = () => {
     setRegister(false);
   };

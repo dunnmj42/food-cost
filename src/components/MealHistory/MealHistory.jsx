@@ -1,7 +1,9 @@
+// React, Redux, Router
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+// MUI
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
@@ -11,8 +13,10 @@ import SearchIcon from "@material-ui/icons/Search";
 import Paper from "@material-ui/core/Paper";
 import Grow from "@material-ui/core/Grow";
 
+// Component
 import MealCard from "../MealCard/MealCard";
 
+// MUI styling
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -38,27 +42,34 @@ const useStyles = makeStyles((theme) => ({
 
 function MealHistory() {
 
+  // State for search
   const [search, setSearch] = useState(null);
 
+  // Meals selector
   const allMeals = useSelector((store) => store?.meals);
 
+  // Hooks
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
 
+  // Card button title
   const buttonTitle = "DETAILS";
 
+  // UseEffect for GET meals
   useEffect(() => {
     dispatch({
       type: "FETCH_MEALS",
     });
   }, []);
 
+  // Click handler to detail view
   const handleClick = (i) => {
     dispatch({ type: "FETCH_DETAILS", payload: meals[i]?.id });
     history.push(`/details/${meals[i]?.id}`);
   };
 
+  // SEARCH function
   const meals = allMeals.filter((meal) => {
     if (search == null) return allMeals;
     else if (meal?.name?.toLowerCase().includes(search.toLowerCase()))

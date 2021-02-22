@@ -1,7 +1,9 @@
+// React, Redux, Router
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+// MUI
 import { makeStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
@@ -9,8 +11,10 @@ import Paper from "@material-ui/core/Paper";
 import Grow from "@material-ui/core/Grow";
 import Slide from "@material-ui/core/Slide";
 
+// Component
 import MealCard from "../MealCard/MealCard";
 
+// MUI styling
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -33,22 +37,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function UserDashboard() {
+  // Meals and user stores
   const meals = useSelector((store) => store?.meals);
   const user = useSelector((store) => store?.user);
 
+  // Hooks
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const meal = meals[0];
-  const buttonTitle = "DETAILS";
+  const meal = meals[0]; // meal for card
+  const buttonTitle = "DETAILS"; // Button title for card
 
+  // UseEffect to GET meals
   useEffect(() => {
     dispatch({
       type: "FETCH_MEALS",
     });
   }, []);
 
+  // Average cost calculation
   let totalCost = 0;
 
   for (let i = 0; i < meals?.length; i++) {
@@ -56,7 +64,9 @@ function UserDashboard() {
   }
 
   let averageCost = totalCost / meals.length;
+  // End average cost
 
+  // Details button click handler
   const handleClick = () => {
     dispatch({ type: "FETCH_DETAILS", payload: meal?.id });
     history.push(`/details/${meal?.id}`);
