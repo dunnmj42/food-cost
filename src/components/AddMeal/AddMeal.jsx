@@ -132,7 +132,7 @@ function AddMeal() {
         `Peppercorn and nutmeg crusted pork chops with roasted broccoli, onion, 
         brown rice, and chili crisp`,
       image:
-        "https://iheartrecipes.com/wp-content/uploads/2017/07/IMG_3649.jpg",
+        "https://i.imgur.com/HvWCoCz.jpg",
       portions: "6",
       date: "2/20/2021",
     });
