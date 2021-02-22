@@ -12,7 +12,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 // Placeholder image
-import placeholder from "./placeholder.png";
+import placeholder from "/public/images/placeholder.png";
 
 // MUI styling
 const useStyles = makeStyles((theme) => ({
