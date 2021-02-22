@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 
 // Literally the one CSS file
 import "./App.css";
+import "./background.png";
 
 // Fresh yung components
 import Nav from "../Nav/Nav";
