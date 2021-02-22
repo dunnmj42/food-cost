@@ -19,7 +19,7 @@ body,
 /* background image - fixed and transparent overlay */
 .background::before {
   content: "";
-  background-color: transparent;
+  background: transparent;
   background-image: url(./background.png);
   background-size: cover;
   background-attachment: fixed;
