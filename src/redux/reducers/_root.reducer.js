@@ -10,11 +10,12 @@ import details from "./details.reducer";
 
 // Lets make a bigger object for our store, with the objects from our reducers.
 // This is what we get when we use 'state' inside of 'mapStateToProps'
+
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
-  meals,
-  details,
+  meals, // will contain all meals for authenticated user
+  details, // will contain meal and ingredients for detail and edit views
 });
 
 export default rootReducer;

@@ -1,3 +1,4 @@
+// React, Redux, Middleware
 import React from "react";
 import ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from "redux";
@@ -5,14 +6,18 @@ import { Provider } from "react-redux";
 import createSagaMiddleware from "redux-saga";
 import logger from "redux-logger";
 
+// root reducer and root saga
 import rootReducer from "./redux/reducers/_root.reducer";
 import rootSaga from "./redux/sagas/_root.saga";
 
+// App
 import App from "./components/App/App";
 
+// MUI
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
 
+// Theme/Palette/Font declaration
 const theme = createMuiTheme({
   palette: {
     type: "dark",
@@ -33,6 +38,7 @@ const theme = createMuiTheme({
   },
 });
 
+// Saga Middleware
 const sagaMiddleware = createSagaMiddleware();
 
 // this line creates an array of all of redux middleware you want to use
@@ -55,6 +61,7 @@ const store = createStore(
 // rootSaga contains all of our other sagas
 sagaMiddleware.run(rootSaga);
 
+// Render, ThemeProvider, Redux Provider, CSSBaseline
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <Provider store={store}>

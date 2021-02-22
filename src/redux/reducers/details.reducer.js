@@ -1,3 +1,4 @@
+// Reducer for details and edit view
 const detailsReducer = (state = [], action) => {
   switch (action.type) {
     case "SET_MEAL_DETAILS":
@@ -7,4 +8,6 @@ const detailsReducer = (state = [], action) => {
   }
 };
 
+// details will be on redux store
+// at store.details
 export default detailsReducer;

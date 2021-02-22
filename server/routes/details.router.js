@@ -5,6 +5,7 @@ const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware.js");
 
+// GET meal details and associated ingredients by ID if authenticated
 router.get("/:id", rejectUnauthenticated, (req, res) => {
   if (req.isAuthenticated()) {
     const idToGet = req.params.id;
@@ -12,6 +13,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
     SELECT * FROM "meals" WHERE id = $1
     `;
     pool
+    // GET ingredients for details by meal ID
       .query(mealQuery, [idToGet])
       .then((result) => {
         const meal = result.rows[0];
@@ -24,8 +26,8 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
           .then((result) => {
             const ingredients = result.rows;
             const details = [meal, ingredients];
-            if (meal.user_id === req.user.id) {
-              res.send(details);
+            if (meal.user_id === req.user.id) { // Check meals user
+              res.send(details); // send if match
             }
           })
           .catch((error) => {

@@ -5,6 +5,7 @@ const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware.js");
 
+// GET all meals belonging to logged in user -- check authenticated
 router.get("/", rejectUnauthenticated, (req, res) => {
   if (req.isAuthenticated()) {
     const query = `
@@ -14,7 +15,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
     pool
       .query(query)
       .then((result) => {
-        res.send(result.rows);
+        res.send(result.rows); // send it bud
       })
       .catch((error) => {
         console.error(error);
@@ -25,31 +26,32 @@ router.get("/", rejectUnauthenticated, (req, res) => {
   }
 });
 
+// POST route -- handles add meal -- calculates CPM -- adds meal ingredients
 router.post("/", rejectUnauthenticated, async (req, res) => {
   if (req.isAuthenticated()) {
     try {
-      let costPerMeal = 0;
+      let costPerMeal = 0; // CPM init
 
       req.body.ingredients.map((ingredient) => {
         return (costPerMeal +=
           (ingredient.price * ingredient.ingredient_qty) /
-          req.body.meal.portions);
+          req.body.meal.portions); // CPM logic to calculate for POST
       });
 
       const mealQuery = `
         INSERT INTO "meals" ("name", "description", "image", "date", "user_id", "portions", "cost_per_meal")
         VALUES ($1, $2, $3, $4, $5, $6, $7)
         RETURNING "id";
-        `;
+        `; // QUERY RETURNS NEW MEAL PRIMARY KEY as ID
 
       const mealsResult = await pool.query(mealQuery, [
         req.body.meal.name,
         req.body.meal.description,
         req.body.meal.image,
         req.body.meal.date,
-        req.user.id,
+        req.user.id, // logged in, authenticated user
         req.body.meal.portions,
-        costPerMeal,
+        costPerMeal, // CPM HERE
       ]);
       const newMealId = mealsResult?.rows[0].id;
 
@@ -63,7 +65,7 @@ router.post("/", rejectUnauthenticated, async (req, res) => {
           ingredient.name,
           ingredient.price,
           ingredient.ingredient_qty,
-          newMealId,
+          newMealId, // INSERT NEWLY RETURNED MEAL ID
         ]);
       });
 
@@ -77,17 +79,20 @@ router.post("/", rejectUnauthenticated, async (req, res) => {
   }
 });
 
+// "PUT" ROUTE(s) for edit view -- UPDATE "meals" then UPDATE "ingredients" then
+// INSERT for new ingredients then DELETE for removed ingredients 
 router.put("/", rejectUnauthenticated, async (req, res) => {
   if (req.isAuthenticated()) {
     try {
-      let costPerMeal = 0;
+      let costPerMeal = 0; // CPM INIT
 
       req.body.ingredients.map((ingredient) => {
         return (costPerMeal +=
           (ingredient.price * ingredient.ingredient_qty) /
-          req.body.meal.portions);
+          req.body.meal.portions); // calculate new CPM for updated meal
       });
 
+      // UPDATE for meals
       const mealQuery = `
         UPDATE "meals" SET ("name", "description", "image", "date", "portions", "cost_per_meal")
         = ($1, $2, $3, $4, $5, $6)
@@ -100,10 +105,11 @@ router.put("/", rejectUnauthenticated, async (req, res) => {
         req.body.meal.image,
         req.body.meal.date,
         req.body.meal.portions,
-        costPerMeal,
+        costPerMeal, // NEW CPM
         req.body.meal.id,
       ]);
 
+      // UPDATE for ingredients
       const ingredientsQuery = `
         UPDATE "ingredients" SET ("name", "price", "ingredient_qty")
         = ($1, $2, $3)
@@ -119,6 +125,7 @@ router.put("/", rejectUnauthenticated, async (req, res) => {
         ]);
       });
 
+      // INSERT for new ingredients
       const newIngredientsQuery = `
         INSERT INTO "ingredients" ("name", "price", "ingredient_qty", "meal_id")
         VALUES ($1, $2, $3, $4)
@@ -133,6 +140,7 @@ router.put("/", rejectUnauthenticated, async (req, res) => {
         ]);
       });
 
+      // DELETE for removed ingredients
       const removeIngredientsQuery = `
         DELETE FROM "ingredients"
         WHERE id = $1;
@@ -155,9 +163,10 @@ router.put("/", rejectUnauthenticated, async (req, res) => {
   }
 });
 
+// DELETE for removing meal
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
   if (req.isAuthenticated()) {
-    const idToRemove = req.params.id;
+    const idToRemove = req.params.id; // DELETE id target
     const removeQuery = `
       DELETE FROM "meals" 
       WHERE id = $1;
