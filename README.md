@@ -41,17 +41,17 @@ How does someone use this application? Tell a user story here.
 
 ## Built With
 
-React
-Redux
-Redux Saga
-React-ChartJS-2
-Passport
-Express
-Axios
-BCryptJS
-PostgreSQL
-Material UI
-Heroku 
+- React
+- Redux
+- Redux Saga
+- React-ChartJS-2
+- Passport
+- Express
+- Axios
+- BCryptJS
+- PostgreSQL
+- Material UI
+- Heroku 
 
 
 ## Acknowledgement
