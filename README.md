@@ -9,7 +9,7 @@ FoodCost is an app that allows registered users to record the cost of their week
 
 To see the fully functional site, please visit: [Heroku](https://vast-retreat-50324.herokuapp.com/#/)
 
-## Screen Shot
+## Screen Shots
 
 ![dashboard](documentation/images/screenshot1.png)
 ![trends view](documentation/images/screenshot2.png)
